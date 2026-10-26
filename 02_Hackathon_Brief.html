@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="snowflake-source" content="cortex-agent-authored">
+<title>Perth Partner Enablement — Hackathon Brief</title>
+<script type="application/json" id="snowflake-report-metadata">
+{
+  "generated": "2026-10-16",
+  "intent": "Participant-facing hackathon brief for the Perth Partner CoCo Enablement session, 28 Oct 2026. Teams extend the Cortex Agent built in Session 2 to solve a concrete business problem. 60 minutes build, 25 minutes pitches, 6 teams of 4-5, 3-minute pitches, single winning team, CoWork demo worth bonus points.",
+  "sections": [
+    { "id": "starting-point", "title": "Your starting point",
+      "producerNotes": "Assumes completion of Session 2 lab: SUMMIT_GEAR_CO.SALES with DEALS (200 rows), SALES_CONVERSATIONS (60 rows), SALES_CALL_SEARCH service, deals semantic view, SUMMIT_GEAR_AGENT, AGENTS.md." },
+    { "id": "tracks", "title": "The three tracks",
+      "producerNotes": "Tracks named in the published invite (Sales Coaching, Pipeline Risk, Customer 360). Starter prompts authored for this event; AI function names should be re-verified against current Snowflake docs before the session." },
+    { "id": "judging", "title": "Judging criteria",
+      "producerNotes": "Weighting agreed with event owner: 30 business problem / 30 agent quality / 25 pitch / 15 CoWork bonus. Bonus is additive, not required to win." },
+    { "id": "rules", "title": "Rules" },
+    { "id": "submission", "title": "Submission" }
+  ]
+}
+</script>
+<style>
+  :root { color-scheme: light dark; --navy:#0D2B45; --cyan:#29B5E8; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    max-width: 920px; width: 100%; margin: 0 auto;
+    padding: 0 clamp(16px, 4vw, 28px) 64px;
+    color: light-dark(#1f2937, #e5e7eb); background: light-dark(#ffffff, #0b1220); line-height: 1.6;
+  }
+  header.hero { background: var(--navy); color:#fff; margin: 0 calc(-1 * clamp(16px,4vw,28px)) 32px; padding: clamp(28px,6vw,48px) clamp(16px,4vw,28px); }
+  .eyebrow { font-size:11px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--cyan); margin:0 0 12px; }
+  header.hero h1 { font-size:clamp(24px,5vw,34px); font-weight:800; margin:0 0 12px; color:#fff; line-height:1.2; }
+  header.hero p { margin:0 0 6px; color:rgba(255,255,255,0.85); font-size:15px; }
+  h2 { font-size:clamp(19px,3.6vw,23px); color:light-dark(var(--navy),#f1f5f9); margin:44px 0 6px; padding-top:14px; border-top:2px solid light-dark(#E5E7EB,#334155); }
+  h3 { font-size:15.5px; color:light-dark(#111827,#f1f5f9); margin:24px 0 6px; }
+  a { color: light-dark(#0b6fb3,#60a5fa); }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size:0.88em; background:light-dark(#F3F4F6,#1f2937); padding:1px 5px; border-radius:4px; }
+  pre { background:light-dark(#0D2B45,#111c2e); color:#E6F6FD; padding:16px; border-radius:8px; overflow-x:auto; font-size:12.5px; line-height:1.55; white-space:pre-wrap; word-break:break-word; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  pre code { background:none; padding:0; color:inherit; font-size:inherit; }
+  .callout { border-left:4px solid var(--cyan); background:light-dark(#F0FAFE,#10243a); padding:14px 16px; border-radius:0 8px 8px 0; margin:18px 0; font-size:14.5px; }
+  .warn { border-left-color:#D97706; background:light-dark(#FFFBEB,#2a2008); }
+  .stop { border-left-color:#DC2626; background:light-dark(#FEF2F2,#2b1111); }
+  .win { border-left-color:#059669; background:light-dark(#ECFDF5,#06251a); }
+  .callout strong:first-child { display:block; margin-bottom:4px; }
+  .track { border:1px solid light-dark(#E5E7EB,#334155); border-radius:12px; padding:20px; margin:18px 0; }
+  .track h3 { margin-top:0; font-size:18px; color:light-dark(var(--navy),#f1f5f9); }
+  .track .who { font-size:12.5px; color:light-dark(#6B7280,#9ca3af); font-style:italic; margin:0 0 12px; }
+  .table-wrap { overflow-x:auto; margin:18px 0; }
+  table { border-collapse:collapse; width:100%; font-size:14px; }
+  th, td { border:1px solid light-dark(#E5E7EB,#334155); padding:9px 12px; text-align:left; vertical-align:top; }
+  th { background:light-dark(#F3F4F6,#1f2937); font-weight:700; font-size:12px; text-transform:uppercase; letter-spacing:.5px; }
+  td.w { white-space:nowrap; font-weight:700; color:var(--cyan); }
+  ol, ul { padding-left:22px; } li { margin:5px 0; }
+  .check { list-style:none; padding-left:0; }
+  .check li { padding-left:28px; position:relative; }
+  .check li::before { content:"\2610"; position:absolute; left:0; font-size:17px; color:var(--cyan); }
+  .clock { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin:18px 0; }
+  .clock div { border:1px solid light-dark(#E5E7EB,#334155); border-top:3px solid var(--cyan); border-radius:8px; padding:12px; }
+  .clock b { display:block; font-size:13px; color:var(--cyan); }
+  .clock span { font-size:13px; color:light-dark(#4B5563,#9ca3af); }
+  footer { margin-top:56px; padding-top:20px; border-top:1px solid light-dark(#E5E7EB,#334155); font-size:12.5px; color:light-dark(#6B7280,#9ca3af); }
+  @media print { header.hero { background:#0D2B45 !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; } .track, pre { page-break-inside:avoid; } }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <p class="eyebrow">Session 3 &mdash; Partner Hackathon</p>
+  <h1>Solve It With CoCo</h1>
+  <p>60 minutes to build &middot; 3 minutes to pitch &middot; One winning team</p>
+  <p>Wednesday 28 October 2026 &middot; 11:00 &ndash; 12:00 build, 12:00 &ndash; 12:25 pitches</p>
+</header>
+
+<h2 style="border-top:none; margin-top:0;">The challenge in one sentence</h2>
+<p style="font-size:17px;">Take the sales agent you just built and turn it into something a named business person would actually use on Monday morning &mdash; then convince us why they would pay for it.</p>
+
+<div class="callout">
+  <strong>What we are really testing.</strong>
+  Not how much you can build in an hour. We are testing whether you can take an agentic capability and attach it to a business outcome &mdash; because that is the conversation you will be having with clients. A technically impressive agent that solves nothing loses to a simple agent that solves something real.
+</div>
+
+<h2 id="starting-point">Your starting point</h2>
+<p>Everything from Session 2 stays exactly as it is. Do not drop or rebuild it. You already have:</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Asset</th><th>What it is</th></tr></thead>
+  <tbody>
+    <tr><td><code>SUMMIT_GEAR_CO.SALES.DEALS</code></td><td>200 deals &mdash; value, stage, win status, rep, territory, product, close date</td></tr>
+    <tr><td><code>SUMMIT_GEAR_CO.SALES.SALES_CONVERSATIONS</code></td><td>60 sales-call transcripts with rep, customer, territory, product and deal stage</td></tr>
+    <tr><td><code>SALES_CALL_SEARCH</code></td><td>Cortex Search service over the transcripts</td></tr>
+    <tr><td>Your deals semantic view</td><td>Dimensions, metrics and synonyms over <code>DEALS</code></td></tr>
+    <tr><td><code>SUMMIT_GEAR_AGENT</code></td><td>A deployed Cortex Agent orchestrating search + analyst</td></tr>
+    <tr><td><code>AGENTS.md</code></td><td>Your project standards, which CoCo reads every session</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="callout warn">
+  <strong>One person's account is the team account.</strong>
+  Pick whichever teammate's lab finished cleanest and build there, together, on one screen. Do not try to merge work across several trial accounts &mdash; you will spend the hour on plumbing. Everyone else drives the pitch, the business case and the testing.
+</div>
+
+<div class="callout">
+  <strong>Use whichever form of CoCo you prefer.</strong>
+  The CLI and Desktop drive the same agent against the same account, so the team can mix the two &mdash; one person in the terminal, another in Desktop reviewing the semantic view or editing <code>AGENTS.md</code>. Judges do not care which you used; they care what you built.
+</div>
+
+<h2>Teams</h2>
+<ul>
+  <li><strong>Six teams of four to five.</strong> We will assign them &mdash; look for your name card.</li>
+  <li>Each team picks <strong>one track</strong>. More than one team can pick the same track.</li>
+  <li>Nominate three roles in the first five minutes: a <strong>driver</strong> (keyboard), a <strong>business owner</strong> (owns the problem statement and the pitch), and a <strong>sceptic</strong> (tries to break the agent and finds the holes before the judges do).</li>
+</ul>
+
+<h2 id="tracks">The three tracks</h2>
+<p>Pick one. Each gives you a business persona, a question the current agent cannot answer well, and starter prompts. The starter prompts are a floor, not a ceiling &mdash; the best submissions go past them.</p>
+
+<div class="track">
+  <h3>Track 1 &mdash; Sales Coaching</h3>
+  <p class="who">Persona: a Sales Manager with eight reps, who has never listened to most of their calls.</p>
+  <p><strong>The problem.</strong> Win rates vary wildly between reps and nobody knows why. The answer is sitting in 60 call transcripts that no human has time to read. The manager needs to know what their best rep does differently &mdash; and what to coach the others on this week.</p>
+  <p><strong>What good looks like.</strong> The agent can tell the manager which rep needs coaching, on what specific behaviour, with evidence from actual calls, and tie it to lost revenue.</p>
+  <p><strong>Starter prompts:</strong></p>
+<pre><code>Using AI functions on SALES_CONVERSATIONS, create a table that scores each
+transcript for sentiment and classifies the primary objection type raised
+(price, competitor, timing, inventory, internal approval, other).
+Join it to DEALS on the deal so each conversation has its win outcome.
+
+Then build a semantic view over that table so the agent can answer
+"which objection type do we lose most often, and which rep handles it best?"</code></pre>
+<pre><code>Add a tool to SUMMIT_GEAR_AGENT over the new coaching table, and update the
+agent's orchestration instructions so coaching questions route to it.
+Then ask: Who are my two weakest reps on price objections,
+and what should I coach them on? Cite specific calls.</code></pre>
+  <p><strong>Stretch:</strong> have the agent draft the actual coaching note to the rep, naming the calls.</p>
+</div>
+
+<div class="track">
+  <h3>Track 2 &mdash; Pipeline Risk</h3>
+  <p class="who">Persona: a VP Sales on a Monday forecast call, who does not trust the numbers.</p>
+  <p><strong>The problem.</strong> The CRM says a deal is in Negotiation. The last call transcript says the customer went quiet about budget and mentioned a competitor. One of those is a stage field, the other is the truth. The VP needs to know which open deals are actually at risk &mdash; before committing a forecast.</p>
+  <p><strong>What good looks like.</strong> A risk score per open deal that is derived from the conversation, not the stage field, with the reason stated in plain English and the dollar value at risk.</p>
+  <p><strong>Starter prompts:</strong></p>
+<pre><code>For every deal in DEALS that is not Closed Won or Lost, use AI functions over
+its related transcripts to produce: a risk level (high / medium / low), a one-line
+reason, and any competitor mentioned. Write this to a DEAL_RISK table with the
+deal value carried through. Explain your approach before you run it.</code></pre>
+<pre><code>Build a semantic view over DEAL_RISK with a metric for total value at risk,
+attach it to SUMMIT_GEAR_AGENT as an additional tool, and update the
+orchestration instructions. Then ask: What is my total pipeline at risk
+this quarter, which deals are the biggest exposures, and why?</code></pre>
+  <p><strong>Stretch:</strong> flag deals where the CRM stage and the conversation evidence disagree &mdash; that contradiction list is the real product.</p>
+</div>
+
+<div class="track">
+  <h3>Track 3 &mdash; Customer 360</h3>
+  <p class="who">Persona: an Account Executive walking into a renewal meeting in ten minutes.</p>
+  <p><strong>The problem.</strong> Everything about this customer exists &mdash; their deal history, every call, their objections, their product mix. It is just spread across two tables and 60 transcripts. The AE needs one briefing, right now, that is actually about this customer.</p>
+  <p><strong>What good looks like.</strong> Ask for a customer by name, get a briefing a human would trust: what they buy, what they have pushed back on, their trajectory, and what to lead with today.</p>
+  <p><strong>Starter prompts:</strong></p>
+<pre><code>Create a CUSTOMER_PROFILE table, one row per customer in DEALS, with: total and
+won deal value, win rate, products purchased, deal count, first and most recent
+close date. Then use AI functions over that customer's transcripts to add a
+summarised relationship history and their recurring concerns.</code></pre>
+<pre><code>Build a semantic view over CUSTOMER_PROFILE, attach it to SUMMIT_GEAR_AGENT,
+and update the orchestration instructions so customer questions use it while
+still searching transcripts for specifics. Then ask: Brief me on REI before
+my renewal call — what do they buy, what have they objected to,
+and what should I lead with?</code></pre>
+  <p><strong>Stretch:</strong> add a cross-sell recommendation grounded in what similar customers bought.</p>
+</div>
+
+<div class="callout">
+  <strong>Let CoCo find the right AI function &mdash; do not guess the syntax.</strong>
+  Snowflake's AI functions cover sentiment, classification, extraction, filtering, aggregated summarisation and open-ended completion over text. Rather than recalling exact signatures, ask:
+  <code>What Snowflake AI functions could classify the objection type in a text column, and what is the current syntax?</code>
+  Getting CoCo to look up the authoritative syntax instead of trusting your memory is itself a skill worth demonstrating.
+</div>
+
+<h2>How to spend the hour</h2>
+<div class="clock">
+  <div><b>0 &ndash; 10 min</b><span>Pick your track. Write your problem statement and name your persona. Assign the three roles. <strong>Do not open a terminal yet.</strong></span></div>
+  <div><b>10 &ndash; 40 min</b><span>Build. Enrich the data, add the tool, update orchestration instructions, test.</span></div>
+  <div><b>40 &ndash; 50 min</b><span>Make it demoable. Settle on the three questions you will ask live. Try the CoWork bonus.</span></div>
+  <div><b>50 &ndash; 57 min</b><span>Write the pitch. Rehearse it once against the clock.</span></div>
+  <div><b>57 &ndash; 60 min</b><span>Submit your one-pager. Stop building.</span></div>
+</div>
+
+<div class="callout stop">
+  <strong>The ten-minute rule.</strong>
+  If you are stuck on the same error for ten minutes, stop and raise your hand. A facilitator will unblock you. Teams lose this hackathon by burning twenty-five minutes on a broken warehouse grant &mdash; not by lacking ideas. There is no penalty for asking.
+</div>
+
+<h2 id="judging">Judging criteria</h2>
+<p>Three judges score each team independently. 100 points available, plus up to 15 bonus.</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Criterion</th><th>Weight</th><th>What earns the marks</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><strong>Business problem clarity</strong></td><td class="w">30</td>
+      <td>Can you name the person, their decision, and what it costs them today? A specific, quantified problem beats a broad one. "A sales manager cannot see which rep is losing price objections, and we lose $X a quarter to it" scores; "improve sales productivity with AI" does not.</td>
+    </tr>
+    <tr>
+      <td><strong>Agent quality</strong></td><td class="w">30</td>
+      <td>Does it work live and is it built well? We want to see: the agent answering a question it could not answer an hour ago, sensible orchestration instructions, a semantic view with real descriptions and metrics, grounded answers with citations, and abstention rather than invention when asked something unanswerable.</td>
+    </tr>
+    <tr>
+      <td><strong>Pitch</strong></td><td class="w">25</td>
+      <td>Three minutes, live demo, no slides. Could you run this in front of a client tomorrow? Clear narrative, honest about limitations, everyone on the team contributes something.</td>
+    </tr>
+    <tr>
+      <td><strong>Bonus: live in CoWork</strong></td><td class="w">+15</td>
+      <td>Show a business-phrased question answered by your agent inside CoWork, driven as a business user with no CLI. <strong>Optional.</strong> A CoCo-only team can still win outright &mdash; this is upside, not a gate.</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h3>Tie-breaker</h3>
+<p>If scores tie, the team whose solution the judges would most readily take into a live client conversation wins.</p>
+
+<div class="callout win">
+  <strong>What consistently wins events like this.</strong>
+  A narrow problem, solved convincingly, demonstrated calmly, with the team honest about what it does not yet do. Judges have seen a lot of ambitious demos fail live. They have seen far fewer teams say "here is the one question this answers, here is the evidence, and here is what we would need to productionise it."
+</div>
+
+<h2 id="rules">Rules</h2>
+<ol>
+  <li><strong>Start from the Session 2 lab state.</strong> No pre-built work brought from outside, no prepared repositories.</li>
+  <li><strong>Build in your team's Snowflake trial account.</strong> One account per team.</li>
+  <li><strong>Use CoCo for the build.</strong> Either the CLI or Desktop &mdash; your choice. You may run SQL directly to inspect or fix things, but the agent, semantic views and enrichment should be built conversationally &mdash; that is the skill being assessed. Expect judges to ask what CoCo did versus what you hand-wrote.</li>
+  <li><strong>You may bring in your own data</strong> if it is non-confidential and you can load it in the time. Not required, and not rewarded for its own sake.</li>
+  <li><strong>Hard stop at 12:00.</strong> Hands off keyboards. Whatever is deployed at 12:00 is what you demo.</li>
+  <li><strong>Demo live from your account.</strong> No screenshots, no recordings, no slideware.</li>
+  <li><strong>Three minutes, strictly timed,</strong> plus roughly one minute of judges' questions.</li>
+  <li><strong>Everybody speaks.</strong> If one person delivers the whole pitch, you lose pitch marks.</li>
+  <li><strong>Declare your limitations.</strong> Teams that volunteer what is weak score better than teams caught out in questions.</li>
+  <li><strong>No confidential client data.</strong> Under any circumstances. This is a non-negotiable condition of participation.</li>
+</ol>
+
+<h2 id="submission">Submission</h2>
+<p>By <strong>12:00</strong>, one person per team submits a one-pager &mdash; a shared doc, an email, or whatever your facilitator directs on the day. Six short answers, no formatting marks:</p>
+<ol>
+  <li><strong>Team name</strong> and members (name + firm)</li>
+  <li><strong>Track</strong> chosen</li>
+  <li><strong>The problem</strong>, in two sentences: who is the person, what decision are they making badly today</li>
+  <li><strong>What we built</strong>, in three bullets</li>
+  <li><strong>The three questions</strong> you will ask live, written out verbatim</li>
+  <li><strong>What it does not do yet</strong> &mdash; your known limitations</li>
+</ol>
+
+<h3>Your three-minute pitch structure</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Time</th><th>Say this</th></tr></thead>
+  <tbody>
+    <tr><td class="w">0:00&ndash;0:40</td><td>The person and their problem. Name them, name the decision, name what it costs. No architecture yet.</td></tr>
+    <tr><td class="w">0:40&ndash;2:15</td><td>Live demo. Your three questions, asked and answered. Narrate which tool the agent chose and why.</td></tr>
+    <tr><td class="w">2:15&ndash;2:40</td><td>How you built it &mdash; what CoCo did, what your <code>AGENTS.md</code> enforced, what you would do next.</td></tr>
+    <tr><td class="w">2:40&ndash;3:00</td><td>Your limitations, and the one sentence you would use to open this conversation with a client.</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>Before you pitch</h3>
+<ul class="check">
+  <li>Your three questions have been run successfully in the last five minutes</li>
+  <li>Browser tabs and terminal are clean and font size is readable from the back of the room</li>
+  <li>You know who speaks when</li>
+  <li>You have a one-sentence answer to "what would it take to run this on real client data?"</li>
+  <li>One-pager submitted</li>
+</ul>
+
+<footer>
+  <p><strong>Perth Partner Enablement</strong> &mdash; Session 3, Partner Hackathon &middot; 28 October 2026</p>
+  <p>Builds on the Snowflake quickstart <em>Getting Started with Cortex Agents with Snowflake CoCo CLI</em>. Confirm current AI function syntax via CoCo or the Snowflake documentation rather than relying on the starter prompts verbatim.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="snowflake-source" content="cortex-agent-authored">
+<title>Perth Partner Enablement — Hands-On Lab Guide</title>
+<script type="application/json" id="snowflake-report-metadata">
+{
+  "generated": "2026-10-16",
+  "intent": "Participant-facing combined hands-on lab guide for the Perth Partner CoCo Enablement session, 28 Oct 2026. Combines the Cortex Agents with CoCo badge quickstart with cherry-picked AGENTS.md content from the Data Engineering with CoCo guide, plus a CoWork consumption step.",
+  "sections": [
+    { "id": "module-0", "title": "Module 0 — Connect and verify",
+      "producerNotes": "Pre-work verification. Content derived from the badge quickstart prerequisites section." },
+    { "id": "module-1", "title": "Module 1 — Generate the dataset",
+      "dataSources": [{ "type": "external", "url": "https://www.snowflake.com/en/developers/guides/getting-started-with-cortex-agents-with-coco/", "note": "Prompt text reproduced from the Generate Sample Data step. Transcript count reduced from 150 to 60 for timeboxing; see facilitator note." }] },
+    { "id": "module-2", "title": "Module 2 — Cortex Search service",
+      "dataSources": [{ "type": "external", "url": "https://www.snowflake.com/en/developers/guides/getting-started-with-cortex-agents-with-coco/" }] },
+    { "id": "module-3", "title": "Module 3 — Semantic View",
+      "dataSources": [{ "type": "external", "url": "https://www.snowflake.com/en/developers/guides/getting-started-with-cortex-agents-with-coco/" }] },
+    { "id": "module-4", "title": "Module 4 — Build the Agent",
+      "dataSources": [{ "type": "external", "url": "https://www.snowflake.com/en/developers/guides/getting-started-with-cortex-agents-with-coco/" }] },
+    { "id": "module-5", "title": "Module 5 — Test the Agent",
+      "dataSources": [{ "type": "external", "url": "https://www.snowflake.com/en/developers/guides/getting-started-with-cortex-agents-with-coco/" }] },
+    { "id": "module-6", "title": "Module 6 — AGENTS.md",
+      "dataSources": [{ "type": "external", "url": "https://www.snowflake.com/en/developers/guides/data-engineering-with-coco/", "note": "Cherry-picked: AGENTS.md concept and authoring only. The dbt, fork, PAT, Skill, Plugin, catalog-publish and CI/CD sections of that guide are deliberately excluded as they do not fit the 60-minute window and require prerequisites not present at this event." }] },
+    { "id": "module-7", "title": "Module 7 — Consume in CoWork",
+      "producerNotes": "Not part of either published quickstart. Added to close the build-in-CoCo / consume-in-CoWork narrative required by the session outcomes." }
+  ]
+}
+</script>
+<style>
+  :root { color-scheme: light dark; --navy:#0D2B45; --cyan:#29B5E8; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    max-width: 920px; width: 100%; margin: 0 auto;
+    padding: 0 clamp(16px, 4vw, 28px) 64px;
+    color: light-dark(#1f2937, #e5e7eb);
+    background: light-dark(#ffffff, #0b1220);
+    line-height: 1.6;
+  }
+  header.hero {
+    background: var(--navy); color: #fff;
+    margin: 0 calc(-1 * clamp(16px, 4vw, 28px)) 32px;
+    padding: clamp(28px, 6vw, 48px) clamp(16px, 4vw, 28px);
+  }
+  .eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--cyan); margin: 0 0 12px; }
+  header.hero h1 { font-size: clamp(24px, 5vw, 34px); font-weight: 800; margin: 0 0 12px; color: #fff; line-height: 1.2; }
+  header.hero p { margin: 0 0 6px; color: rgba(255,255,255,0.85); font-size: 15px; }
+  h2 { font-size: clamp(19px, 3.6vw, 23px); color: light-dark(var(--navy), #f1f5f9); margin: 44px 0 6px; padding-top: 14px; border-top: 2px solid light-dark(#E5E7EB,#334155); }
+  h2 .num { color: var(--cyan); font-weight: 800; }
+  h3 { font-size: 15px; color: light-dark(#111827,#f1f5f9); margin: 24px 0 6px; }
+  a { color: light-dark(#0b6fb3, #60a5fa); }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.88em;
+         background: light-dark(#F3F4F6,#1f2937); padding: 1px 5px; border-radius: 4px; }
+  pre { background: light-dark(#0D2B45,#111c2e); color: #E6F6FD; padding: 16px; border-radius: 8px;
+        overflow-x: auto; font-size: 12.5px; line-height: 1.55; white-space: pre-wrap; word-break: break-word;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  pre code { background: none; padding: 0; color: inherit; font-size: inherit; }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 0; }
+  .pill { font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 999px; background: rgba(41,181,232,0.18); color: var(--cyan); border: 1px solid rgba(41,181,232,0.4); }
+  .time { display: inline-block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .8px;
+          background: light-dark(#DBEAFE,#1e3a5f); color: light-dark(#1E40AF,#93c5fd); padding: 3px 9px; border-radius: 4px; }
+  .callout { border-left: 4px solid var(--cyan); background: light-dark(#F0FAFE,#10243a); padding: 14px 16px; border-radius: 0 8px 8px 0; margin: 18px 0; font-size: 14.5px; }
+  .warn { border-left-color: #D97706; background: light-dark(#FFFBEB,#2a2008); }
+  .stop { border-left-color: #DC2626; background: light-dark(#FEF2F2,#2b1111); }
+  .callout strong:first-child { display:block; margin-bottom: 4px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px,1fr)); gap: 14px; margin: 18px 0; }
+  .card { border: 1px solid light-dark(#E5E7EB,#334155); border-radius: 10px; padding: 16px; }
+  .card h4 { margin: 0 0 6px; font-size: 14px; color: light-dark(var(--navy),#f1f5f9); }
+  .card p { margin: 0; font-size: 13.5px; color: light-dark(#4B5563,#9ca3af); }
+  .table-wrap { overflow-x: auto; margin: 18px 0; }
+  table { border-collapse: collapse; width: 100%; font-size: 14px; }
+  th, td { border: 1px solid light-dark(#E5E7EB,#334155); padding: 9px 12px; text-align: left; vertical-align: top; }
+  th { background: light-dark(#F3F4F6,#1f2937); font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: .5px; }
+  ol, ul { padding-left: 22px; }
+  li { margin: 5px 0; }
+  .check { list-style: none; padding-left: 0; }
+  .check li { padding-left: 28px; position: relative; }
+  .check li::before { content: "\2610"; position: absolute; left: 0; font-size: 17px; color: var(--cyan); }
+  footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid light-dark(#E5E7EB,#334155); font-size: 12.5px; color: light-dark(#6B7280,#9ca3af); }
+  @media print { header.hero { background:#0D2B45 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; } h2 { page-break-after: avoid; } pre { page-break-inside: avoid; } }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <p class="eyebrow">Snowflake Partner Enablement &mdash; Perth</p>
+  <h1>Hands-On Lab: Build &amp; Deploy a Cortex Agent with CoCo</h1>
+  <p>Wednesday 28 October 2026 &middot; Cliftons Perth, Parmelia House, 191 St Georges Terrace</p>
+  <p>Session 2 &mdash; 9:45 to 10:45 &middot; Guided lab, 60 minutes</p>
+  <div class="meta">
+    <span class="pill">Snowflake CoCo CLI</span>
+    <span class="pill">CoCo Desktop</span>
+    <span class="pill">Cortex Search</span>
+    <span class="pill">Semantic Views</span>
+    <span class="pill">Cortex Agents</span>
+    <span class="pill">CoWork</span>
+    <span class="pill">AGENTS.md</span>
+  </div>
+</header>
+
+<h2 style="border-top:none; margin-top:0;">What you will build</h2>
+<p>An <strong>Intelligent Sales Assistant</strong> for Summit Gear Co., a fictional outdoor adventure brand. By the end of this hour you will have, driving CoCo conversationally:</p>
+<div class="grid">
+  <div class="card"><h4>A loaded dataset</h4><p>200 deals and 60 sales-call transcripts, generated conversationally &mdash; no CSVs, no manual DDL.</p></div>
+  <div class="card"><h4>A Cortex Search service</h4><p>Hybrid semantic + keyword search over unstructured call transcripts.</p></div>
+  <div class="card"><h4>A Semantic View</h4><p>Business context that lets Cortex Analyst turn plain English into accurate SQL.</p></div>
+  <div class="card"><h4>A deployed Cortex Agent</h4><p>One agent that orchestrates across both structured and unstructured data.</p></div>
+  <div class="card"><h4>An AGENTS.md</h4><p>Project standards that CoCo reads automatically, so it builds things your way.</p></div>
+  <div class="card"><h4>A CoWork entry point</h4><p>Your agent, used by a business person in a chat interface &mdash; no code.</p></div>
+</div>
+
+<div class="callout">
+  <strong>This lab is your badge evidence.</strong>
+  Completing these modules is the hands-on component of the <strong>Snowflake Partner CoCo Foundation Badge</strong>. You will sit the short assessment in your own time afterwards &mdash; the claim link is in your wrap-up email. Keep your final agent deployed; you will build on it in the hackathon straight after this session.
+</div>
+
+<h3>How this guide relates to the published quickstarts</h3>
+<p>Modules 1&ndash;5 follow the official
+<a href="https://www.snowflake.com/en/developers/guides/getting-started-with-cortex-agents-with-coco/">Getting Started with Cortex Agents with Snowflake CoCo CLI</a>
+quickstart &mdash; that is the badge quickstart, and it is the authoritative source. Module 6 is cherry-picked from
+<a href="https://www.snowflake.com/en/developers/guides/data-engineering-with-coco/">Data Engineering with CoCo</a>
+(the AGENTS.md portion only). Module 7 is additional and not in either guide.</p>
+
+<h3>CLI or Desktop &mdash; you will use both today</h3>
+<p>CoCo comes in two form factors and they are the same agent underneath, driving the same Snowflake account. Every prompt in this guide works in either.</p>
+<div class="grid">
+  <div class="card"><h4>CoCo CLI</h4><p>Terminal-native. Launch with <code>cortex</code>. This is what the published quickstart uses, and the fastest way through Modules 1&ndash;5.</p></div>
+  <div class="card"><h4>CoCo Desktop</h4><p>A full workspace &mdash; chat alongside your files, SQL results, diffs and Snowflake objects. Best for Module 6, where you are editing a file in a project, and worth having open throughout.</p></div>
+</div>
+<div class="callout">
+  <strong>Recommended: run the CLI for Modules 1&ndash;5, then switch to Desktop for Module 6.</strong>
+  That way you see both, and you hit Desktop exactly where its file-and-project view earns its keep. If you prefer to stay in one the whole way, that is fine &mdash; nothing in this guide depends on which you choose.
+</div>
+
+<h3>Work in pairs</h3>
+<p>Sit with a partner and swap roles at each module boundary.</p>
+<div class="grid">
+  <div class="card"><h4>Driver</h4><p>Hands on keyboard. Runs CoCo, pastes prompts, reads what comes back out loud.</p></div>
+  <div class="card"><h4>Navigator</h4><p>Reads ahead in this guide, watches for what CoCo is actually doing, and asks "why did it choose that?" Catches the errors the driver misses.</p></div>
+</div>
+<div class="callout">
+  <strong>If you are in a sales or leadership role, take Navigator first.</strong>
+  You do not need to type a command to get the value here. The navigator seat is where you learn the story you will tell a client: what CoCo decided, what it asked permission for, and how little of this was hand-written SQL. Swap into the driver seat at Module 4 when the agent gets built &mdash; that is the part worth having done yourself.
+</div>
+
+<h2 id="module-0"><span class="num">0</span> &middot; Connect and verify <span class="time">5 min</span></h2>
+<p>You should have done this before arriving. If it is already working, help your neighbour and move to Module 1.</p>
+
+<h3>Launch CoCo and confirm your connection</h3>
+<p>Start with the CLI:</p>
+<pre><code>cortex</code></pre>
+<p>On first launch CoCo walks you through connecting to your Snowflake account. Once you are at the chat prompt, confirm you are pointed at the right place and have the privileges you need:</p>
+<pre><code>What Snowflake account, user and role am I currently connected as?
+Confirm I can create databases, warehouses, Cortex Search services,
+semantic views and agents with this role.</code></pre>
+
+<p>Then open <strong>CoCo Desktop</strong> and run the same question in its chat box. You should get the same answer &mdash; Desktop reads the same connection file the CLI wrote. Leave Desktop open; you will come back to it at Module 6.</p>
+
+<ul class="check">
+  <li>CoCo launches and reaches a chat prompt</li>
+  <li>It reports your trial account identifier and your user</li>
+  <li>Your role is <code>ACCOUNTADMIN</code> (or has create privileges on databases, schemas, tables, search services, semantic views and agents)</li>
+  <li>CoCo Desktop opens and answers the same question, with a default warehouse set</li>
+</ul>
+
+<div class="callout stop">
+  <strong>Stop and raise your hand now if any of those three fail.</strong>
+  Do not try to fix a connection problem while the room moves on to Module 1 &mdash; a facilitator will sort it in two minutes and you will lose the lab if you fall behind here. This is the single most common place people get stuck.
+</div>
+
+<h2 id="module-1"><span class="num">1</span> &middot; Generate the dataset <span class="time">12 min</span></h2>
+<p>You will not write a <code>CREATE TABLE</code> statement or load a file. You will describe the dataset you want, and CoCo will build and populate it.</p>
+<p>Paste this prompt into CoCo exactly as written:</p>
+
+<pre><code>Set up a sales database for Summit Gear Co., an outdoor adventure brand. 
+Create database SUMMIT_GEAR_CO with schema SALES and a small warehouse called SUMMIT_GEAR_WH. 
+Then generate and load synthetic data into two tables:
+
+Table 1: DEALS (200 rows)
+Columns: deal_id, customer_name, deal_value, close_date, sales_stage, win_status, sales_rep, territory, product_name, product_category
+- 8 sales reps: Jake Morrison, Mia Chen, Lucas Rivera, Ava Patel, Ethan Brooks, Sophie Nakamura, Caleb Washington, Lily O'Brien
+- 4 territories: Pacific Northwest, Mountain West, Northeast, Southeast
+- 30 customers (outdoor retailers and e-commerce): REI, Backcountry, Moosejaw, Mountain Hardwear Outlet, Wild Earth, Campmor, Sierra Trading, Steep & Cheap, Eastern Mountain Sports, Outdoor Voices, Fjallraven Store, Sundance Outfitters, Trailhead Sports, Alpine Start, Summit Supply, Peak Performance Shop, Ridge & River Co, Basecamp Goods, Powder House, Timberline Traders, The North Wall, Canyon Creek Outfitters, Glacier Point Gear, High Camp Provisions, Ridgeline Sports, Evergreen Adventures, Crestline Outdoors, BlueSky Gear, TerraPeak Supply, Venture Out Co
+- 12 products across 4 categories: Boots (Alpine Pro, Trail Runner, Winter Grip), Jackets (Summit Shell, Basecamp Down, Storm Guard), Packs (Expedition 65L, Day Hiker 30L, Ultra Light 20L), Accessories (Trekking Poles, Headlamp Pro, Thermal Flask)
+- Sales stages: Closed Won, Lost, Pending, Negotiation, Discovery
+- Deal values ranging from $5,000 to $150,000
+- Close dates to our current date
+
+Table 2: SALES_CONVERSATIONS (150 rows)
+Columns: conversation_id, transcript_text, customer_name, deal_stage, sales_rep, territory, conversation_date, deal_value, product_name
+- transcript_text should be realistic 3-5 paragraph sales call transcripts discussing products, customer objections, competition, seasonal demand, pricing negotiations, and inventory concerns
+- Reference actual product names and customer names from the lists above
+- Include variety: discovery calls, demos, negotiations, closing conversations, and follow-ups
+ 
+After loading, enable change tracking on SALES_CONVERSATIONS.</code></pre>
+
+<p>While that runs, read ahead to Module 2 and watch what CoCo is doing. Notice that it is deciding the DDL, choosing data types, and asking you to approve actions &mdash; narrate this to your navigator.</p>
+
+<h3>Verify before you move on</h3>
+<pre><code>How many rows are in SUMMIT_GEAR_CO.SALES.DEALS and SUMMIT_GEAR_CO.SALES.SALES_CONVERSATIONS?</code></pre>
+<ul class="check">
+  <li><code>DEALS</code> returns <strong>200</strong> rows</li>
+  <li><code>SALES_CONVERSATIONS</code> returns <strong>150</strong> rows</li>
+  <li>Spot-check one transcript is real prose, not placeholder text: <code>Show me one full transcript_text from SALES_CONVERSATIONS</code></li>
+</ul>
+
+<div class="callout warn">
+  <strong>Short on rows?</strong> That is normal and not a failure &mdash; generation sometimes stops early. Say
+  <code>Top up SALES_CONVERSATIONS to 60 rows with the same generation rules</code>. Anything over about 40 transcripts is enough to continue; do not spend more than two minutes here.
+</div>
+
+<h2 id="module-2"><span class="num">2</span> &middot; Create the Cortex Search service <span class="time">6 min</span></h2>
+<p>Transcripts are unstructured text. Cortex Search gives you hybrid semantic and keyword retrieval over them, with managed embeddings &mdash; you do not pick a model or manage a vector store.</p>
+
+<pre><code>Create a Cortex Search service called SALES_CALL_SEARCH on the transcript_text column 
+in SUMMIT_GEAR_CO.SALES.SALES_CONVERSATIONS with attributes customer_name, deal_stage, 
+sales_rep, territory, product_name using warehouse SUMMIT_GEAR_WH</code></pre>
+
+<p>CoCo looks up the correct DDL syntax and executes it. The service then builds a semantic index across your transcripts.</p>
+
+<h3>Why the attributes matter</h3>
+<p>Those five attribute columns are what let the agent <em>filter</em> while it searches &mdash; "objections in the Northeast about Alpine Pro boots" needs both semantic matching on the text and a filter on territory and product. Ask CoCo to explain it in its own words; this is a good question to be able to answer in front of a client:</p>
+<pre><code>Explain what the attribute columns do in a Cortex Search service
+and why I would not just put everything in the search column.</code></pre>
+
+<ul class="check">
+  <li>Service <code>SALES_CALL_SEARCH</code> created</li>
+  <li>Indexing has started (ask <code>What is the status of the SALES_CALL_SEARCH service?</code>)</li>
+</ul>
+
+<h2 id="module-3"><span class="num">3</span> &middot; Create the Semantic View <span class="time">8 min</span></h2>
+<p>This is the step that drives text-to-SQL accuracy. A Semantic View adds business meaning &mdash; descriptions, synonyms, sample values, relationships &mdash; on top of raw columns, so Cortex Analyst knows that "win rate" and "how are we tracking" mean something specific in your schema.</p>
+
+<pre><code>Create a semantic view for the SUMMIT_GEAR_CO.SALES.DEALS table</code></pre>
+
+<p>CoCo loads its built-in <code>semantic-view</code> skill, which generates the view from table metadata, annotates columns with descriptions, sample values and synonyms, then deploys it. <strong>Accept the defaults when prompted</strong> for naming and file location.</p>
+
+<div class="callout">
+  <strong>Look at what it generated before you accept it.</strong>
+  Open the generated YAML and read the descriptions and synonyms CoCo wrote. This is the artefact that separates a demo that answers 60% of questions from one that answers 90%. In a client engagement, this file is where your domain expertise lives &mdash; and it is reviewable, diffable and version-controllable. That is the argument you will make to a data governance lead.
+</div>
+
+<p>Then improve it, because this is what you will do on real client data:</p>
+<pre><code>Add a metric to the semantic view for win rate, defined as the count of deals
+where win_status indicates a win, divided by the count of all closed deals.
+Add synonyms for territory including region and area.</code></pre>
+
+<ul class="check">
+  <li>Semantic view deployed over <code>DEALS</code></li>
+  <li>You have read the generated descriptions and synonyms</li>
+  <li>A win-rate metric exists</li>
+</ul>
+
+<h2 id="module-4"><span class="num">4</span> &middot; Build the Agent <span class="time">10 min</span></h2>
+<p>So far you have two separate tools: search over text, and analytics over structured data. A Cortex Agent puts one orchestration layer in front of both, so a user asks a question in plain English and the agent decides which tool to use &mdash; or both.</p>
+
+<pre><code>Create an agent called SUMMIT_GEAR_AGENT in SUMMIT_GEAR_CO.SALES that uses the
+SALES_CALL_SEARCH cortex search service and the deals semantic view</code></pre>
+
+<p>CoCo loads its <code>cortex-agent</code> skill and will:</p>
+<ol>
+  <li>Initialise an agent workspace</li>
+  <li>Build the agent specification with both tools attached</li>
+  <li>Generate <strong>orchestration instructions</strong> that route questions to the right tool</li>
+  <li>Deploy the agent</li>
+</ol>
+
+<div class="callout">
+  <strong>Read the orchestration instructions before you deploy.</strong>
+  This is the most important thing in the agent spec and the thing most people skip. It is natural-language routing logic &mdash; it tells the agent when to search transcripts versus when to query deals. When a client asks "how do I control what the agent does?", this is your answer. Ask CoCo: <code>Show me the orchestration instructions you generated and explain the routing logic.</code>
+</div>
+
+<ul class="check">
+  <li>Agent <code>SUMMIT_GEAR_AGENT</code> deployed in <code>SUMMIT_GEAR_CO.SALES</code></li>
+  <li>It has two tools: a Cortex Search tool and a Cortex Analyst tool</li>
+  <li>You have read the orchestration instructions</li>
+</ul>
+
+<h2 id="module-5"><span class="num">5</span> &middot; Test the Agent <span class="time">8 min</span></h2>
+<p>Three questions, each proving a different capability. Run all three &mdash; the third is the one that matters.</p>
+
+<h3>Structured — routes to Cortex Analyst</h3>
+<pre><code>Chat with agent SUMMIT_GEAR_CO.SALES.SUMMIT_GEAR_AGENT and ask:
+What is our win rate by territory this quarter?</code></pre>
+<p>This generates SQL against <code>DEALS</code> and aggregates by territory.</p>
+
+<h3>Unstructured — routes to Cortex Search</h3>
+<pre><code>Ask the agent: What objections came up in recent calls about our Alpine Pro boots?</code></pre>
+<p>This retrieves relevant transcripts and surfaces customer objections, with citations.</p>
+
+<h3>Both — the orchestration test</h3>
+<pre><code>Ask the agent: How is Sophie Nakamura performing in the Northeast,
+and what themes come up in her sales calls?</code></pre>
+<p>This requires the agent to pull deal metrics <em>and</em> search her transcripts, then synthesise one answer. This is the capability that does not exist in a BI tool or a chatbot, and it is the demo you will run for clients.</p>
+
+<div class="callout">
+  <strong>Try to break it.</strong> Ask something your data cannot answer &mdash; <code>What is our market share in Japan?</code> &mdash; and see whether the agent abstains rather than inventing a number. Answer abstention is a governance feature, and being able to show it is often what gets an agent approved for production.
+</div>
+
+<ul class="check">
+  <li>All three questions answered sensibly</li>
+  <li>Citations appear on the transcript-based answer</li>
+  <li>You have seen the agent abstain on an unanswerable question</li>
+</ul>
+
+<h2 id="module-6"><span class="num">6</span> &middot; Teach CoCo your standards with AGENTS.md <span class="time">6 min</span></h2>
+<p>Everything so far, you told CoCo explicitly. That does not scale &mdash; and on a client engagement you have naming conventions, a warehouse you are allowed to use, and things you must never do. <code>AGENTS.md</code> is how you encode that once.</p>
+
+<h3>What AGENTS.md is</h3>
+<p>A plain Markdown file in your project root that CoCo reads automatically at the start of every session. No command, no install, no configuration. It is persistent project context: conventions, commands, guardrails and preferences. Think of it as onboarding documentation that your agent actually reads.</p>
+
+<div class="callout">
+  <strong>Switch to CoCo Desktop for this module.</strong>
+  You are about to create and edit a file in a project, which is exactly what Desktop is built for &mdash; open the folder as a project and you can see <code>AGENTS.md</code>, the chat, and the diffs CoCo proposes side by side. It works in the CLI too, but you will understand what is happening faster in Desktop.
+</div>
+
+<p>Create a project folder, open it in Desktop, then ask CoCo to write it:</p>
+<pre><code>Create an AGENTS.md in this project that captures the following, and keep it concise:
+
+## Snowflake
+- Database SUMMIT_GEAR_CO, schema SALES, warehouse SUMMIT_GEAR_WH. Never use another warehouse.
+- Never run DROP or TRUNCATE without asking me first.
+- Always qualify objects to three parts.
+
+## Naming Conventions
+- Tables and columns UPPER_SNAKE_CASE. Semantic views suffixed _SV. Agents suffixed _AGENT.
+- Cortex Search services suffixed _SEARCH.
+
+## Semantic Views
+- Every column gets a description. Every dimension a client would name differently gets synonyms.
+- Define metrics explicitly rather than relying on the model to infer aggregations.
+
+## How I want you to work
+- Show me the SQL or spec before you deploy anything.
+- Explain your reasoning in one or two sentences, not an essay.</code></pre>
+
+<h3>Prove it works</h3>
+<p>This is the point of the module &mdash; do not skip the test. Ask for something that would violate a rule, without restating the rule:</p>
+<pre><code>Create a semantic view over the SALES_CONVERSATIONS table.</code></pre>
+<p>Watch what CoCo does differently: it should apply your <code>_SV</code> suffix, stay on <code>SUMMIT_GEAR_WH</code>, write descriptions on every column, and show you the spec before deploying &mdash; none of which you asked for in that prompt.</p>
+
+<ul class="check">
+  <li><code>AGENTS.md</code> exists in your project root</li>
+  <li>A follow-up request visibly obeyed a rule you did not repeat</li>
+  <li>You can explain to a client why this file matters</li>
+</ul>
+
+<div class="callout">
+  <strong>You will need this in the hackathon.</strong>
+  Keep this file. Extend it with your team's conventions for whatever business problem you pick &mdash; judges will look at it.
+</div>
+
+<h2 id="module-7"><span class="num">7</span> &middot; Hand it over: consume the agent in CoWork <span class="time">5 min</span></h2>
+<p>You have built an agent as a developer. Now see it the way a business person will. This is the whole point of the architecture: <strong>CoCo is where you build, CoWork is where the business consumes.</strong> The agent you deployed is the same object in both.</p>
+
+<ol>
+  <li>Open <strong>Snowsight</strong> in your browser, signed in to the same trial account.</li>
+  <li>Open <strong>Snowflake CoWork</strong>.</li>
+  <li>Select your agent, <code>SUMMIT_GEAR_AGENT</code>.</li>
+  <li>Ask it, as a sales manager would: <em>"Which territory is underperforming and why?"</em></li>
+</ol>
+
+<p>Note what is different and what is identical. Same agent, same tools, same semantic view, same governance and role-based access. No code, no CLI, no deployment step. You did not do anything extra to make it available here.</p>
+
+<div class="callout warn">
+  <strong>If your agent does not appear in CoWork</strong>, do not debug it during the lab. Flag it to a facilitator and carry on &mdash; you can still complete the hackathon entirely from CoCo, and CoWork is a bonus there, not a requirement. Availability can vary by trial account and region.
+</div>
+
+<ul class="check">
+  <li>Agent located in CoWork</li>
+  <li>A business-phrased question answered without you touching the CLI</li>
+</ul>
+
+<h2>Done &mdash; and what happens next</h2>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>You now have</th><th>Why a client should care</th></tr></thead>
+  <tbody>
+    <tr><td>Data generated and loaded conversationally</td><td>Prototyping against realistic data no longer waits on a data engineering backlog</td></tr>
+    <tr><td>Cortex Search over unstructured text</td><td>The 80% of enterprise data sitting in calls, tickets and documents becomes queryable</td></tr>
+    <tr><td>A Semantic View with metrics and synonyms</td><td>Text-to-SQL that is accurate and governed, because meaning is declared, not guessed</td></tr>
+    <tr><td>One agent orchestrating both</td><td>A single question can span structured and unstructured data &mdash; with citations and abstention</td></tr>
+    <tr><td>AGENTS.md</td><td>Agent behaviour is reviewable, version-controlled project context, not prompt folklore</td></tr>
+    <tr><td>The same agent live in CoWork</td><td>Zero-step handover from builder to business consumer, inside the governance boundary</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="callout">
+  <strong>Do not drop your database.</strong>
+  The hackathon starts from exactly this state &mdash; <code>SUMMIT_GEAR_CO</code>, your search service, your semantic view, your agent and your <code>AGENTS.md</code>. Leave it all in place over the break.
+</div>
+
+<h3>Claiming your badge</h3>
+<p>The hands-on component is what you just completed. To claim the <strong>Snowflake Partner CoCo Foundation Badge</strong>, complete the short assessment in Snowflake Training in your own time &mdash; the enrolment link is in your wrap-up email. If you did not finish every module, the guide above is yours to keep and the quickstart is public; finish it at home before you sit the assessment.</p>
+
+<h3>Going further</h3>
+<p>The parts of <a href="https://www.snowflake.com/en/developers/guides/data-engineering-with-coco/">Data Engineering with CoCo</a> we did not have time for are the natural next step, and they are where this becomes an engineering practice rather than a demo: custom <strong>Skills</strong> (reusable procedures CoCo can invoke), <strong>Plugins</strong> (bundled skills plus hooks and subagents), <strong>production safety hooks</strong>, publishing to your organisation's <strong>plugin catalog</strong>, and running CoCo headlessly in <strong>CI/CD</strong> to review pull requests. That guide needs a GitHub fork, dbt and a PAT &mdash; set aside two to three hours.</p>
+
+<footer>
+  <p><strong>Perth Partner Enablement</strong> &mdash; Build with Cortex Agents &amp; CoCo &middot; 28 October 2026</p>
+  <p>Modules 1&ndash;5 adapted from the Snowflake quickstart <em>Getting Started with Cortex Agents with Snowflake CoCo CLI</em>; Module 6 adapted from <em>Data Engineering with CoCo</em>. Transcript volume reduced for timeboxing. Module 7 is additional. Quickstart content is provided as-is by Snowflake and may change.</p>
+</footer>
+
+</body>
+</html>

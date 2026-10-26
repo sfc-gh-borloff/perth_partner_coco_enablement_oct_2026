@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="snowflake-source" content="cortex-agent-authored">
+<title>INTERNAL — Perth Partner Enablement Run Sheet</title>
+<script type="application/json" id="snowflake-report-metadata">
+{
+  "generated": "2026-10-16",
+  "intent": "Internal Snowflake team run sheet for the Perth Partner CoCo Enablement session, 28 Oct 2026. Minute-by-minute schedule, role assignments (placeholders), content links, risk register, pre-built mixed-firm team allocation, and judging logistics.",
+  "sections": [
+    { "id": "ataglance", "title": "At a glance" },
+    { "id": "roles", "title": "Who does what" },
+    { "id": "runsheet", "title": "Minute-by-minute run sheet",
+      "producerNotes": "Timings derived from the published invite agenda. Pitch slot recalculated: 6 teams x 3 min pitch + 1 min Q&A = 24 min, fits the 12:00-12:25 slot." },
+    { "id": "teams", "title": "Team allocation",
+      "dataSources": [{ "type": "file", "note": "Derived from the event registration Google Form responses as at 16 Oct 2026: 25 unique registrants across 10 partner firms, 2 duplicate rows excluded. Allocation algorithm: maximise firm diversity per team, then distribute the 5 non-technical attendees (3 Leadership, 2 Sales) one per team." }] },
+    { "id": "content", "title": "Content links" },
+    { "id": "risks", "title": "Risk register" },
+    { "id": "judging", "title": "Judging logistics" },
+    { "id": "followup", "title": "Post-event follow-up" }
+  ]
+}
+</script>
+<style>
+  :root { color-scheme: light dark; --navy:#0D2B45; --cyan:#29B5E8; }
+  * { box-sizing:border-box; }
+  body { font-family:-apple-system, BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+    max-width:1060px; width:100%; margin:0 auto; padding:0 clamp(16px,4vw,28px) 64px;
+    color:light-dark(#1f2937,#e5e7eb); background:light-dark(#fff,#0b1220); line-height:1.55; }
+  header.hero { background:var(--navy); color:#fff; margin:0 calc(-1 * clamp(16px,4vw,28px)) 28px; padding:clamp(24px,5vw,40px) clamp(16px,4vw,28px); }
+  .eyebrow { font-size:11px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--cyan); margin:0 0 10px; }
+  header.hero h1 { font-size:clamp(22px,4.6vw,31px); font-weight:800; margin:0 0 10px; color:#fff; line-height:1.2; }
+  header.hero p { margin:0 0 5px; color:rgba(255,255,255,0.85); font-size:14.5px; }
+  .internal { display:inline-block; background:#DC2626; color:#fff; font-size:10.5px; font-weight:800; letter-spacing:1.5px; padding:3px 10px; border-radius:4px; margin-bottom:12px; }
+  h2 { font-size:clamp(18px,3.4vw,22px); color:light-dark(var(--navy),#f1f5f9); margin:40px 0 6px; padding-top:13px; border-top:2px solid light-dark(#E5E7EB,#334155); }
+  h3 { font-size:15px; color:light-dark(#111827,#f1f5f9); margin:22px 0 6px; }
+  a { color:light-dark(#0b6fb3,#60a5fa); }
+  code { font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:0.88em; background:light-dark(#F3F4F6,#1f2937); padding:1px 5px; border-radius:4px; }
+  pre { background:light-dark(#0D2B45,#111c2e); color:#E6F6FD; padding:14px; border-radius:8px; overflow-x:auto; font-size:12px; line-height:1.5; white-space:pre-wrap; word-break:break-word; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; }
+  pre code { background:none; padding:0; color:inherit; font-size:inherit; }
+  .callout { border-left:4px solid var(--cyan); background:light-dark(#F0FAFE,#10243a); padding:13px 15px; border-radius:0 8px 8px 0; margin:16px 0; font-size:14px; }
+  .warn { border-left-color:#D97706; background:light-dark(#FFFBEB,#2a2008); }
+  .stop { border-left-color:#DC2626; background:light-dark(#FEF2F2,#2b1111); }
+  .callout strong:first-child { display:block; margin-bottom:3px; }
+  .table-wrap { overflow-x:auto; margin:16px 0; }
+  table { border-collapse:collapse; width:100%; font-size:13.5px; }
+  th, td { border:1px solid light-dark(#E5E7EB,#334155); padding:8px 11px; text-align:left; vertical-align:top; }
+  th { background:light-dark(#F3F4F6,#1f2937); font-weight:700; font-size:11.5px; text-transform:uppercase; letter-spacing:.5px; }
+  td.t { white-space:nowrap; font-weight:700; color:light-dark(var(--navy),var(--cyan)); font-variant-numeric:tabular-nums; }
+  td.owner { white-space:nowrap; font-weight:600; }
+  tr.break td { background:light-dark(#F9FAFB,#141d2e); font-style:italic; }
+  .ph { background:light-dark(#FEF3C7,#3a2d08); padding:1px 6px; border-radius:4px; font-weight:700; font-size:0.92em; white-space:nowrap; }
+  .sev { font-size:10.5px; font-weight:800; padding:2px 7px; border-radius:4px; white-space:nowrap; }
+  .hi { background:#FEE2E2; color:#991B1B; } .me { background:#FEF3C7; color:#92400E; } .lo { background:#DBEAFE; color:#1E40AF; }
+  ol, ul { padding-left:21px; } li { margin:4px 0; }
+  .check { list-style:none; padding-left:0; } .check li { padding-left:26px; position:relative; }
+  .check li::before { content:"\2610"; position:absolute; left:0; font-size:16px; color:var(--cyan); }
+  footer { margin-top:52px; padding-top:18px; border-top:1px solid light-dark(#E5E7EB,#334155); font-size:12px; color:light-dark(#6B7280,#9ca3af); }
+  @media print { header.hero { background:#0D2B45 !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; } table { font-size:11px; } h2 { page-break-after:avoid; } tr { page-break-inside:avoid; } }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <span class="internal">INTERNAL — SNOWFLAKE TEAM ONLY</span>
+  <p class="eyebrow">Run Sheet</p>
+  <h1>Perth Partner CoCo Enablement</h1>
+  <p>Wednesday 28 October 2026 &middot; 08:00 &ndash; 12:30 AWST</p>
+  <p>Cliftons Perth &mdash; Parmelia House, 191 St Georges Terrace, Perth WA 6000</p>
+  <p>25 partner attendees &middot; 10 partner firms &middot; 5 Snowflake staff</p>
+</header>
+
+<div class="callout stop">
+  <strong>Do not circulate outside Snowflake.</strong>
+  Contains internal timings, risk assessments, staffing and attendee allocation. Participant-facing documents are <code>01_Lab_Guide_Perth.html</code> and <code>02_Hackathon_Brief.html</code>.
+</div>
+
+<h2 id="ataglance" style="border-top:none; margin-top:0;">At a glance</h2>
+<div class="table-wrap">
+<table>
+  <tbody>
+    <tr><th>Objective</th><td>Partners leave able to (1) tell the Snowflake Agentic Enterprise story credibly to a client, (2) build and deploy a Cortex Agent in CoCo unaided, (3) show it being consumed in CoWork, and (4) claim the Snowflake Partner CoCo Foundation Badge.</td></tr>
+    <tr><th>Attendees</th><td>25 partner registrants. <strong>19 Delivery / technical, 3 Leadership, 2 Sales, 1 Pre-Sales.</strong></td></tr>
+    <tr><th>Firms</th><td>FA-Tech Australia (6), InterWorks (5), Deloitte (4), Mantel Group (3), Mechanical Rock (2), V2 AI, Comunet, Versent, EY, Endava (1 each)</td></tr>
+    <tr><th>Snowflake staff</th><td>Brian Orloff, Mathew Zele, Luke, Anton Krasikov, Gary North</td></tr>
+    <tr><th>Environment</th><td>Snowflake 30-day trial, self-provisioned by each attendee via the signup link in the pre-event emails. <strong>Not pre-provisioned by us</strong> &mdash; see risk R1.</td></tr>
+    <tr><th>Teams</th><td>6 teams of 4&ndash;5, pre-allocated and mixed across firms. See <a href="#teams">Team allocation</a>.</td></tr>
+    <tr><th>Prize</th><td>One winning team. Snowflake swag</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2 id="roles">Who does what</h2>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Role</th><th>Owner</th><th>Responsibility</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Event owner / MC</strong></td><td class="owner">Brian Orloff</td><td>Opens and closes, keeps the clock, runs team formation, chairs judging, owns the badge-claim message. Single point of truth on timing.</td></tr>
+    <tr><td><strong>Session 1 keynote</strong></td><td class="owner">Brian Orloff</td><td>Agentic Control Plane lecture and live demo. Positions CoCo and CoWork. Also judge.</td></tr>
+    <tr><td><strong>Lab lead</strong></td><td class="owner">Brian Orloff</td><td>Drives Session 2 from the front, projected. Sets pace, calls module boundaries, decides when to move on regardless of stragglers.</td></tr>
+    <tr><td><strong>Floor lead &mdash; left</strong></td><td class="owner">Anton Krasikov</td><td>Floor-walks Teams A, B, C. Owns unblocking. Does not sit down.</td></tr>
+    <tr><td><strong>Floor lead &mdash; right</strong></td><td class="owner">Gary North</td><td>Floor-walks Teams D, E, F. Owns unblocking. Does not sit down.</td></tr>
+    <tr><td><strong>Triage desk</strong></td><td class="owner">Anton Krasikov &amp; Gary North rotating</td><td>During 08:00&ndash;08:30 only: one SE stationed at the door solely to fix trial-account and CoCo-install failures before the session starts.</td></tr>
+    <tr><td><strong>Judges</strong></td><td class="owner">Mathew Zele, Luke McDermott, Brian Orloff</td><td>Score independently against the published rubric, then confer. See <a href="#judging">Judging logistics</a>.</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="callout warn">
+  <strong>Floor leads: the 10-minute rule is yours to enforce.</strong>
+  Participants have been told to raise a hand after ten minutes stuck. They will not. Walk the room continuously and look for the tell: a terminal that has not changed in five minutes. Intervene unprompted. One stuck attendee who is too polite to ask will quietly lose the entire session.
+</div>
+
+<h2 id="runsheet">Minute-by-minute run sheet</h2>
+
+<h3>Day before &mdash; Tuesday 27 October</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Time</th><th>Owner</th><th>Action</th></tr></thead>
+  <tbody>
+    <tr><td class="t">—</td><td class="owner">Brian Orloff</td><td>Confirm final headcount against registrations; reconfirm catering and room numbers with Cliftons.</td></tr>
+    <tr><td class="t">—</td><td class="owner">Gary North</td><td><strong>Dry-run the entire lab end to end on a fresh trial account</strong>, timing each module. This is non-negotiable &mdash; it is the only way to catch a quickstart or product change. Report actual timings to the event owner.</td></tr>
+    <tr><td class="t">—</td><td class="owner">Mathew Zele</td><td>Verify the three hackathon tracks' starter prompts still work and that AI function syntax is current.</td></tr>
+    <tr><td class="t">—</td><td class="owner">Luke McDermott</td><td>Confirm a Cortex Agent created on a trial account is visible and usable in CoWork. <strong>If not, Module 7 and the hackathon bonus become SE-demoed only</strong> &mdash; tell the event owner immediately.</td></tr>
+    <tr><td class="t">—</td><td class="owner">Anton Krasikov</td><td>Build a <strong>known-good backup account</strong> with the full Session 2 end-state already deployed, for demo-at-the-front and for any team whose account dies.</td></tr>
+    <tr><td class="t">—</td><td class="owner">Brian Orloff</td><td>Print: 10&times; lab guides, 10&times; hackathon briefs, 6&times; team table cards, 6&times; judging scorecards. Assume the venue wifi will fail somebody.</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>Event day &mdash; Wednesday 28 October</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Time</th><th>Owner</th><th>What happens</th></tr></thead>
+  <tbody>
+    <tr class="break"><td class="t">08:00&ndash;08:30</td><td class="owner">All Snowflake</td><td><strong>Sign-in, coffee, registration.</strong> Door question to every single person: <em>"Have you got CoCo installed and your trial account working?"</em> Anyone who says no goes straight to the triage desk. Record who needed help &mdash; those are your at-risk attendees for the rest of the morning.</td></tr>
+    <tr><td class="t">08:30&ndash;08:35</td><td class="owner">Brian Orloff</td><td><strong>Welcome.</strong> Housekeeping, wifi, the shape of the morning, the badge, the hackathon and the prize. Name the Snowflake team. Set the expectation: this is hands-on, you will be in teams, nobody leaves without having built something.</td></tr>
+    <tr><td class="t">08:35&ndash;09:30</td><td class="owner">Brian Orloff</td><td><strong>Session 1 &mdash; The Agentic Control Plane.</strong> Lecture and live demo. Cortex Agents orchestrating structured and unstructured data; where CoCo and CoWork sit; the client conversation. Leave the last 5 min for questions.</td></tr>
+    <tr class="break"><td class="t">09:30&ndash;09:45</td><td class="owner">All SEs</td><td><strong>Break.</strong> <em>Working break</em> &mdash; all three SEs on the floor, not at the coffee. Final sweep: every attendee opens a terminal, runs <code>cortex</code>, and confirms their connection and role before the lab starts. This 15 minutes is the single highest-leverage slot in the day.</td></tr>
+    <tr><td class="t">09:45&ndash;10:45</td><td class="owner">Luke leads; Anton Krasikov Gary North floor</td><td><strong>Session 2 &mdash; Hands-on lab.</strong> Driven from the front, projected, module by module. See module timings below. Lab lead keeps pace and moves the room on at each boundary even if some are behind &mdash; the guide is self-serve and catching up is possible, falling an hour behind is not.</td></tr>
+    <tr class="break"><td class="t">10:45&ndash;11:00</td><td class="owner">Brian Orloff</td><td><strong>Break + team formation.</strong> Announce the pre-allocated teams and move people to their tables <em>physically</em>. Hand out hackathon briefs. Each team nominates driver / business owner / sceptic and picks a track. SEs confirm each team has at least one working lab account to build on.</td></tr>
+    <tr><td class="t">11:00&ndash;12:00</td><td class="owner">Anton Krasikov Gary North floor; Luke roaming</td><td><strong>Session 3 &mdash; Hackathon.</strong> Teams build. Event owner calls time at <strong>11:30</strong> ("half way &mdash; you should be building, not still scoping"), <strong>11:50</strong> ("ten minutes, stop building and rehearse") and <strong>12:00</strong> (hard stop, hands off keyboards).</td></tr>
+    <tr><td class="t">12:00&ndash;12:24</td><td class="owner">Brian Orloff chairs</td><td><strong>Team showcases.</strong> 6 teams &times; 3 min pitch + 1 min judges' questions = 24 min. Strictly timed, visible countdown, cut teams off at 3:00. Pitch order drawn at random at 12:00 so nobody games it.</td></tr>
+    <tr><td class="t">12:24&ndash;12:27</td><td class="owner">Judges</td><td><strong>Judges confer</strong> while the room has coffee. Three minutes, no more. Agree the winner and one sentence of praise for each team.</td></tr>
+    <tr><td class="t">12:27&ndash;12:30</td><td class="owner">Brian Orloff</td><td><strong>Prize, badge path and close.</strong> Announce the winner. Then the three things everyone must leave with: (1) how to claim the badge, (2) the wrap-up email is coming today with every link, (3) who to contact. Thank the partners and Cliftons.</td></tr>
+    <tr><td class="t">12:30</td><td class="owner">Brian Orloff</td><td><strong>Send the wrap-up email before you leave the room.</strong> Pre-drafted, badge link included. Momentum dies within 24 hours.</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>Session 2 module timings &mdash; lab lead's clock</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Clock</th><th>Module</th><th>Dur.</th><th>Lab lead's job</th></tr></thead>
+  <tbody>
+    <tr><td class="t">09:45</td><td>0 &mdash; Connect and verify</td><td>5</td><td>Ask for hands from anyone not connected. Send them to an SE, do not debug from the front.</td></tr>
+    <tr><td class="t">09:50</td><td>1 &mdash; Generate the dataset</td><td>12</td><td>Longest step. While it generates, narrate what CoCo is deciding &mdash; DDL, types, approvals. <strong>60 transcripts, not 150.</strong></td></tr>
+    <tr><td class="t">10:02</td><td>2 &mdash; Cortex Search service</td><td>6</td><td>Make the point about attribute columns and filtered search.</td></tr>
+    <tr><td class="t">10:08</td><td>3 &mdash; Semantic View</td><td>8</td><td>Open the generated YAML on the projector. This is the accuracy-and-governance argument &mdash; do not rush it.</td></tr>
+    <tr><td class="t">10:16</td><td>4 &mdash; Build the Agent</td><td>10</td><td>Call the seat swap. Read the orchestration instructions aloud.</td></tr>
+    <tr><td class="t">10:26</td><td>5 &mdash; Test the Agent</td><td>8</td><td>All three questions. Demo abstention on an unanswerable question.</td></tr>
+    <tr><td class="t">10:34</td><td>6 &mdash; AGENTS.md</td><td>6</td><td>Must demonstrate the proof step &mdash; a later prompt obeying an unrepeated rule. This is the bridge to the hackathon.</td></tr>
+    <tr><td class="t">10:40</td><td>7 &mdash; Consume in CoWork</td><td>5</td><td>If trial CoWork access is unreliable, demo this from the front on the backup account instead of having 25 people fail at once.</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="callout warn">
+  <strong>If you are running behind at 10:26, cut Module 5 to one question and protect Modules 6 and 7.</strong>
+  Modules 1&ndash;4 are the badge evidence and must complete. Module 6 is what the hackathon depends on. Module 7 is the strategic payoff the whole event was sold on. Module 5's third question is the most expendable thing in the hour.
+</div>
+
+<h2 id="teams">Team allocation</h2>
+<p>Pre-allocated to maximise cross-firm mixing and to spread the five non-technical attendees one per team, so no team carries more than one person who is new to a terminal. <strong>Print as table cards.</strong> Expect to re-balance on the day for no-shows &mdash; collapse to five teams rather than running a team of two.</p>
+
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Team</th><th>Members</th><th>Firm</th><th>Role</th></tr></thead>
+  <tbody>
+    <tr><td class="t" rowspan="5"><strong>A</strong></td><td>Nadim Warsi</td><td>FA-Tech Australia</td><td>Leadership</td></tr>
+    <tr><td>Brody George</td><td>InterWorks</td><td>Delivery</td></tr>
+    <tr><td>Ryan Gargett</td><td>Deloitte</td><td>Delivery</td></tr>
+    <tr><td>Daniel Yaschenko</td><td>Mantel Group</td><td>Delivery</td></tr>
+    <tr><td>Maciej Tarsa</td><td>Mechanical Rock</td><td>Delivery</td></tr>
+
+    <tr><td class="t" rowspan="4"><strong>B</strong></td><td>Joshua Ellis</td><td>Mantel Group</td><td>Leadership</td></tr>
+    <tr><td>Sahil Kumar</td><td>FA-Tech Australia</td><td>Delivery</td></tr>
+    <tr><td>Huda Haleem</td><td>InterWorks</td><td>Delivery</td></tr>
+    <tr><td>Subhanwita Bhowal</td><td>Deloitte</td><td>Delivery</td></tr>
+
+    <tr><td class="t" rowspan="4"><strong>C</strong></td><td>Dave Kezic</td><td>Versent</td><td>Leadership</td></tr>
+    <tr><td>Mathieu Grainger</td><td>FA-Tech Australia</td><td>Delivery</td></tr>
+    <tr><td>Priyanka Singh</td><td>InterWorks</td><td>Delivery</td></tr>
+    <tr><td>Lee Moran</td><td>Deloitte Australia</td><td>Delivery</td></tr>
+
+    <tr><td class="t" rowspan="4"><strong>D</strong></td><td>Grant Hunkin</td><td>EY</td><td>Sales</td></tr>
+    <tr><td>Shivani Rewatkar</td><td>FA-Tech Australia</td><td>Delivery</td></tr>
+    <tr><td>Maaz Mazhar</td><td>InterWorks</td><td>Delivery</td></tr>
+    <tr><td>Susmita De</td><td>Deloitte</td><td>Delivery</td></tr>
+
+    <tr><td class="t" rowspan="4"><strong>E</strong></td><td>Ryan Faulds</td><td>Endava</td><td>Sales</td></tr>
+    <tr><td>Sreebha Sreenivas</td><td>FA-Tech Australia</td><td>Delivery</td></tr>
+    <tr><td>Devon Biggerstaff</td><td>InterWorks</td><td>Delivery</td></tr>
+    <tr><td>Sean Lam</td><td>Mechanical Rock</td><td>Delivery</td></tr>
+
+    <tr><td class="t" rowspan="4"><strong>F</strong></td><td>Hasitha Abeysekera</td><td>FA-Tech Australia</td><td>Delivery</td></tr>
+    <tr><td>Rob Franklin</td><td>Mantel Group</td><td>Delivery</td></tr>
+    <tr><td>Derek Bingham</td><td>V2 AI</td><td>Pre-Sales</td></tr>
+    <tr><td>Yuri Verbaan</td><td>Comunet</td><td>Delivery</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="callout">
+  <strong>Two roster items to resolve before the event.</strong>
+  <strong>Grant Hunkin (EY)</strong> registered with an <code>nz.ey.com</code> address &mdash; confirm he is attending Perth in person and not expecting a remote option.
+  <strong>Huda Haleem</strong> and <strong>Ryan Gargett</strong> each submitted twice; duplicates were excluded from the count of 25 and from this allocation. Confirm neither intended to register a colleague.
+</div>
+
+<h2 id="content">Content links</h2>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>What</th><th>Where</th><th>Used by</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Badge quickstart</strong> &mdash; Getting Started with Cortex Agents with CoCo CLI</td><td><a href="https://www.snowflake.com/en/developers/guides/getting-started-with-cortex-agents-with-coco/">snowflake.com/en/developers/guides/getting-started-with-cortex-agents-with-coco</a></td><td>Session 2 (authoritative source), hackathon starting point</td></tr>
+    <tr><td><strong>Data Engineering with CoCo</strong> &mdash; source for the AGENTS.md module</td><td><a href="https://www.snowflake.com/en/developers/guides/data-engineering-with-coco/">snowflake.com/en/developers/guides/data-engineering-with-coco</a></td><td>Module 6 (AGENTS.md only); recommended as post-event self-study</td></tr>
+    <tr><td><strong>Badge enablement path</strong> &mdash; Snowflake Partner CoCo Foundation</td><td><a href="https://training.snowflake.com/lmt/clmsCourseDetails.prMain?in_sessionId=JJ0J11191J2J34AA&amp;in_offeringId=219891057&amp;in_lp_id=219894006">training.snowflake.com &mdash; CoCo Foundation learning path</a></td><td>Close, and the wrap-up email. <strong>Verify this link resolves for an external partner login before sending.</strong></td></tr>
+    <tr><td><strong>Participant lab guide</strong></td><td><code>01_Lab_Guide_Perth.html</code></td><td>Session 2 &mdash; print and host</td></tr>
+    <tr><td><strong>Participant hackathon brief</strong></td><td><code>02_Hackathon_Brief.html</code></td><td>Session 3 &mdash; print and hand out at 10:45</td></tr>
+    <tr><td><strong>T-7 email</strong></td><td><code>04_Email_T-7_Prerequisites.html</code></td><td>Send Wed 21 Oct</td></tr>
+    <tr><td><strong>T-2 email</strong></td><td><code>05_Email_T-2_Reminder.html</code></td><td>Send Mon 26 Oct</td></tr>
+    <tr><td><strong>Pre-event checklist</strong></td><td><code>06_Pre_Event_Checklist.html</code></td><td>Event owner, from now until 28 Oct</td></tr>
+    <tr><td><strong>Original invite</strong> (agenda source of truth)</td><td><code>Perth_Partner_Enablement_Email.html</code></td><td>Reference</td></tr>
+    <tr><td><strong>CoCo CLI install</strong></td><td>macOS/Linux: <code>curl -LsS https://ai.snowflake.com/static/cc-scripts/install.sh | sh</code><br>Windows: <code>irm https://ai.snowflake.com/static/cc-scripts/install.ps1 | iex</code></td><td>Pre-work, both emails, triage desk</td></tr>
+    <tr><td><strong>CoCo CLI docs</strong></td><td><a href="https://docs.snowflake.com/en/user-guide/cortex-code/cortex-code-cli">docs.snowflake.com &mdash; Cortex Code CLI</a></td><td>Troubleshooting</td></tr>
+    <tr><td><strong>Cortex Agents docs</strong></td><td><a href="https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-agents">docs.snowflake.com &mdash; Cortex Agents</a></td><td>Session 1, troubleshooting</td></tr>
+    <tr><td><strong>Cortex Search docs</strong></td><td><a href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-search/cortex-search-overview">docs.snowflake.com &mdash; Cortex Search</a></td><td>Troubleshooting</td></tr>
+    <tr><td><strong>Cortex Analyst docs</strong></td><td><a href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-analyst">docs.snowflake.com &mdash; Cortex Analyst</a></td><td>Troubleshooting</td></tr>
+    <tr><td><strong>Semantic Views docs</strong></td><td><a href="https://docs.snowflake.com/en/user-guide/views-semantic">docs.snowflake.com &mdash; Semantic views</a></td><td>Module 3</td></tr>
+    <tr><td><strong>Trial signup link</strong></td><td><span class="ph">[BRIAN TO GENERATE AND INSERT]</span></td><td>Both pre-event emails &mdash; <strong>blocker until supplied</strong></td></tr>
+    <tr><td><strong>Hackathon submission form</strong></td><td><span class="ph">[BRIAN TO CREATE]</span></td><td>Hackathon brief, due 12:00</td></tr>
+    <tr><td><strong>Feedback form</strong></td><td><span class="ph">[BRIAN TO CREATE]</span></td><td>Close and wrap-up email</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2 id="risks">Risk register</h2>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>#</th><th>Risk</th><th>Sev</th><th>Mitigation</th><th>Owner</th></tr></thead>
+  <tbody>
+    <tr>
+      <td class="t">R1</td>
+      <td><strong>Attendees arrive without a working trial account or CoCo installed.</strong> Historically the single biggest killer of hands-on sessions. 25 self-provisioned trials means 25 chances to fail.</td>
+      <td><span class="sev hi">HIGH</span></td>
+      <td>Prerequisites in both pre-event emails with an explicit verification step. Door question at sign-in. Dedicated triage desk 08:00&ndash;08:30. Working break at 09:30 with all SEs on the floor. Backup account available to pair onto.</td>
+      <td class="owner">Brian Orloff</td>
+    </tr>
+    <tr>
+      <td class="t">R2</td>
+      <td><strong>CoWork is unavailable or inconsistent on trial accounts.</strong> Module 7 and the hackathon bonus both depend on it.</td>
+      <td><span class="sev hi">HIGH</span></td>
+      <td>Verify on a fresh trial at dry-run (27 Oct). If unreliable: Module 7 becomes a front-of-room demo on the backup account, and the hackathon bonus is scored on an SE-assisted demo. Both documents already warn participants not to debug this in-session.</td>
+      <td class="owner">Luke</td>
+    </tr>
+    <tr>
+      <td class="t">R3</td>
+      <td><strong>Data generation in Module 1 overruns.</strong> Generating long transcripts is the slowest step and blocks everything after it.</td>
+      <td><span class="sev hi">HIGH</span></td>
+      <td>Already reduced 150&rarr;60 transcripts. Guide tells participants 40+ is enough to proceed and to top up rather than restart. Lab lead moves the room on at 10:02 regardless. Backup account lets anyone catastrophically behind re-join at Module 2.</td>
+      <td class="owner">Luke</td>
+    </tr>
+    <tr>
+      <td class="t">R4</td>
+      <td><strong>Venue network blocks or throttles CoCo.</strong> Corporate-grade filtering at a conference venue is common and would end the session.</td>
+      <td><span class="sev hi">HIGH</span></td>
+      <td>Live-fire test on venue wifi at 07:40, before anyone arrives. Confirm with Cliftons in advance that there is no outbound filtering and ask for the guest bandwidth figure. Have mobile hotspots as fallback for at least the six team accounts.</td>
+      <td class="owner">Luke</td>
+    </tr>
+    <tr>
+      <td class="t">R5</td>
+      <td><strong>Five non-technical attendees stall in a CLI-first lab</strong> and disengage, or become passengers in the hackathon.</td>
+      <td><span class="sev me">MED</span></td>
+      <td>Driver/navigator pairing built into the lab guide with an explicit note to sales and leadership attendees. Teams are allocated with exactly one non-technical member each. Hackathon defines a business-owner role that genuinely needs them.</td>
+      <td class="owner">Brian Orloff</td>
+    </tr>
+    <tr>
+      <td class="t">R6</td>
+      <td><strong>Published quickstart changes between now and the event</strong>, or product behaviour drifts. Snowflake states the guides are not maintained on an ongoing basis.</td>
+      <td><span class="sev me">MED</span></td>
+      <td>Full dry-run on 27 Oct against a fresh account. Lab guide links to the live quickstart as authoritative. Review the guide after dry-run and correct any divergence.</td>
+      <td class="owner">Luke</td>
+    </tr>
+    <tr>
+      <td class="t">R7</td>
+      <td><strong>Pitches overrun and the close is lost.</strong> Six teams in 24 minutes has almost no slack, and the badge message lives in the last 3 minutes.</td>
+      <td><span class="sev me">MED</span></td>
+      <td>Visible countdown, hard cut at 3:00, order drawn at random. If running late, judges confer during the final pitch rather than afterwards. <strong>The badge-claim message is never cut</strong> &mdash; drop judges' questions instead.</td>
+      <td class="owner">Brian Orloff</td>
+    </tr>
+    <tr>
+      <td class="t">R8</td>
+      <td><strong>Badge link does not work for external partner logins</strong>, so nobody can claim what we committed to.</td>
+      <td><span class="sev me">MED</span></td>
+      <td>Test the enablement URL from outside the Snowflake SSO boundary before the T-7 email. If partners cannot self-enrol, obtain the correct enrolment route from the partner training team and put that in the wrap-up email instead.</td>
+      <td class="owner">Brian Orloff</td>
+    </tr>
+    <tr>
+      <td class="t">R9</td>
+      <td><strong>No-shows unbalance the teams.</strong> 25 registered, expect 18&ndash;22 on the day.</td>
+      <td><span class="sev lo">LOW</span></td>
+      <td>Collapse to five or even four teams at 10:45 rather than running undersized ones. Fewer teams also buys back pitch time.</td>
+      <td class="owner">Brian Orloff</td>
+    </tr>
+    <tr>
+      <td class="t">R10</td>
+      <td><strong>A participant loads confidential client data</strong> into a trial account during the hackathon.</td>
+      <td><span class="sev me">MED</span></td>
+      <td>Explicit non-negotiable rule in the hackathon brief. Restate verbally at team formation. Floor leads intervene immediately if they see it.</td>
+      <td class="owner">Brian Orloff</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h2 id="judging">Judging logistics</h2>
+<p>Three judges score independently, then confer for three minutes. Published rubric: <strong>Business problem clarity 30 &middot; Agent quality 30 &middot; Pitch 25 &middot; CoWork bonus up to 15</strong>. Tie-breaker: whichever solution the judges would most readily take into a live client conversation.</p>
+
+<h3>Scorecard &mdash; print three copies</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Team</th><th>Track</th><th>Problem /30</th><th>Agent /30</th><th>Pitch /25</th><th>CoWork /15</th><th>Total</th><th>One sentence of praise</th></tr></thead>
+  <tbody>
+    <tr><td class="t">A</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td class="t">B</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td class="t">C</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td class="t">D</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td class="t">E</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td class="t">F</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="callout">
+  <strong>Every team gets one sentence of specific praise at the close.</strong>
+  Twenty-five people from ten partner firms will each report back internally on how this event went. Five teams leaving feeling like losers is a worse commercial outcome than any single prize is worth. The praise column is not decoration &mdash; fill it in during the pitches.
+</div>
+
+<h3>Judges' questions worth asking</h3>
+<ul>
+  <li>What did CoCo do here, and what did you hand-write?</li>
+  <li>Show me your <code>AGENTS.md</code> &mdash; what did it stop you doing?</li>
+  <li>Ask it something your data cannot answer. What happens?</li>
+  <li>What would it take to run this on a real client's data?</li>
+  <li>What broke, and what did you do about it?</li>
+</ul>
+
+<h2 id="followup">Post-event follow-up</h2>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>When</th><th>Owner</th><th>Action</th></tr></thead>
+  <tbody>
+    <tr><td class="t">12:30 same day</td><td class="owner">Brian Orloff</td><td><strong>Wrap-up email</strong>, pre-drafted and sent from the room: badge enrolment link, lab guide, hackathon brief, both quickstart URLs, the Data Engineering guide as next step, winner announcement, feedback form, named contacts.</td></tr>
+    <tr><td class="t">+1 day</td><td class="owner">All Snowflake</td><td>15-minute debrief. What broke, what landed, what to change. Write it down while it is fresh &mdash; this event will be run in other cities.</td></tr>
+    <tr><td class="t">+3 days</td><td class="owner">Brian Orloff</td><td>Chase the feedback form. Target 60%+ response.</td></tr>
+    <tr><td class="t">+7 days</td><td class="owner">Brian Orloff</td><td><strong>Badge completion chase.</strong> This is the committed outcome and it will not happen on its own. Check completions, nudge individuals by name, offer a 30-minute group office hour for anyone stuck.</td></tr>
+    <tr><td class="t">+14 days</td><td class="owner">Partner-aligned SEs</td><td>Per-firm follow-up with the 10 partners. Who is ready to take this to a client? Convert enablement into pipeline &mdash; that is the actual point of the investment.</td></tr>
+  </tbody>
+</table>
+</div>
+
+<footer>
+  <p><strong>INTERNAL</strong> &mdash; Perth Partner CoCo Enablement run sheet &middot; 28 October 2026 &middot; generated 16 October 2026</p>
+  <p>Attendee allocation derived from event registrations as at 16 October 2026 (25 unique registrants, 2 duplicate submissions excluded). Timings sourced from the published invite. Quickstart content is provided as-is by Snowflake and may change &mdash; the 27 October dry-run is the control for that.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="snowflake-source" content="cortex-agent-authored">
+<title>INTERNAL — Perth Enablement Pre-Event Checklist</title>
+<script type="application/json" id="snowflake-report-metadata">
+{
+  "generated": "2026-10-16",
+  "intent": "Event-owner pre-event checklist for the Perth Partner CoCo Enablement session, 28 Oct 2026. Revised 18 Oct: participants install both the CoCo CLI and CoCo Desktop, and pre-enrol in the Snowflake Partner CoCo Foundation Learning Track via SPN. Trial accounts are provisioned via a tracked signup link pinned to AWS ap-northeast-1 (Tokyo) which expires 23 Oct; a replacement link must be issued in the reminder email. First email sends 19 or 20 Oct, reminder 26 Oct. Includes a gap analysis of items not covered by the original brief.",
+  "sections": [
+    { "id": "blockers", "title": "Do these first — they gate everything else",
+      "producerNotes": "Three items must be resolved before the first participant email can be sent: the trial link expiry window, verification that the SPN and Learning Track links resolve for a partner login, and a dry run in Tokyo (ap-northeast-1) confirming trial-account feature availability including CoWork." },
+    { "id": "t12", "title": "Now — before the first email" },
+    { "id": "t7", "title": "First email — Monday 19 or Tuesday 20 October" },
+    { "id": "t2", "title": "Reminder email — Monday 26 October" },
+    { "id": "t1", "title": "Day before — Tuesday 27 October" },
+    { "id": "day", "title": "Event day" },
+    { "id": "after", "title": "After the event" },
+    { "id": "gaps", "title": "Gap analysis — things not in the original plan",
+      "producerNotes": "Items identified as missing from the event brief: prize logistics, submission and feedback forms, badge completion tracking, photography consent, dietary requirements, accessibility, name cards, offline fallbacks, and a post-event commercial follow-up owner." }
+  ]
+}
+</script>
+<style>
+  :root { color-scheme: light dark; --navy:#0D2B45; --cyan:#29B5E8; }
+  * { box-sizing:border-box; }
+  body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+    max-width:960px; width:100%; margin:0 auto; padding:0 clamp(14px,3vw,26px) 64px;
+    color:light-dark(#1f2937,#e5e7eb); background:light-dark(#fff,#0b1220); line-height:1.55; }
+  header.hero { background:var(--navy); color:#fff; margin:0 calc(-1 * clamp(14px,3vw,26px)) 28px; padding:clamp(24px,5vw,40px) clamp(14px,3vw,26px); }
+  .eyebrow { font-size:11px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--cyan); margin:0 0 10px; }
+  header.hero h1 { font-size:clamp(22px,4.5vw,31px); font-weight:800; margin:0 0 10px; color:#fff; line-height:1.2; }
+  header.hero p { margin:0 0 5px; color:rgba(255,255,255,0.85); font-size:14.5px; }
+  .conf { display:inline-block; background:#DC2626; color:#fff; font-size:10.5px; font-weight:800; letter-spacing:1.2px; padding:3px 9px; border-radius:4px; text-transform:uppercase; margin-bottom:12px; }
+  h2 { font-size:clamp(18px,3.4vw,22px); color:light-dark(var(--navy),#f1f5f9); margin:40px 0 4px; padding-top:13px; border-top:2px solid light-dark(#E5E7EB,#334155); }
+  h2 .when { display:block; font-size:12.5px; font-weight:600; color:light-dark(#6B7280,#9ca3af); letter-spacing:.3px; margin-top:3px; }
+  h3 { font-size:14.5px; color:light-dark(#111827,#f1f5f9); margin:22px 0 4px; }
+  a { color:light-dark(#0b6fb3,#60a5fa); word-break:break-word; }
+  code { font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:0.87em; background:light-dark(#F3F4F6,#1f2937); padding:1px 5px; border-radius:4px; }
+  .callout { border-left:4px solid var(--cyan); background:light-dark(#F0FAFE,#10243a); padding:13px 15px; border-radius:0 8px 8px 0; margin:16px 0; font-size:14px; }
+  .stop { border-left-color:#DC2626; background:light-dark(#FEF2F2,#2b1111); }
+  .warn { border-left-color:#D97706; background:light-dark(#FFFBEB,#2a2008); }
+  .callout strong:first-child { display:block; margin-bottom:4px; }
+  ul.ck { list-style:none; padding-left:0; margin:12px 0; }
+  ul.ck li { padding:7px 0 7px 30px; position:relative; border-bottom:1px solid light-dark(#F3F4F6,#1b2537); font-size:14.5px; }
+  ul.ck li::before { content:"\2610"; position:absolute; left:0; top:6px; font-size:18px; color:var(--cyan); }
+  ul.ck li.crit::before { color:#DC2626; }
+  ul.ck li.crit { background:light-dark(#FEF2F2,#2b1111); padding-left:30px; padding-right:10px; border-radius:4px; }
+  ul.ck li b { color:light-dark(#0D2B45,#f1f5f9); }
+  ul.ck li span.own { display:inline-block; font-family:ui-monospace,monospace; font-size:10.5px; font-weight:700; background:light-dark(#DBEAFE,#1e3a5f); color:light-dark(#1E40AF,#93c5fd); padding:1px 6px; border-radius:3px; margin-left:6px; vertical-align:middle; }
+  .gap { border:1px solid light-dark(#E5E7EB,#334155); border-left:3px solid #D97706; border-radius:0 8px 8px 0; padding:14px 16px; margin:14px 0; }
+  .gap h4 { margin:0 0 5px; font-size:14.5px; color:light-dark(var(--navy),#f1f5f9); }
+  .gap p { margin:0 0 7px; font-size:13.8px; color:light-dark(#4B5563,#9ca3af); }
+  .gap p:last-child { margin-bottom:0; }
+  .gap .rec { color:light-dark(#065F46,#6ee7b7); font-weight:600; }
+  footer { margin-top:50px; padding-top:18px; border-top:1px solid light-dark(#E5E7EB,#334155); font-size:12px; color:light-dark(#6B7280,#9ca3af); }
+  @media print { header.hero { background:#0D2B45 !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; } .gap { page-break-inside:avoid; } }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <span class="conf">Internal &mdash; Event Owner</span>
+  <p class="eyebrow">Pre-Event Checklist</p>
+  <h1>Perth Partner CoCo Enablement</h1>
+  <p>Event: Wednesday 28 October 2026 &middot; First participant email goes out 19 or 20 October</p>
+  <p>Owner: Brian Orloff</p>
+</header>
+
+<h2 id="blockers" style="border-top:none;margin-top:0;">Do these three first <span class="when">They gate the first email &mdash; nothing else can go out until they're done</span></h2>
+
+<div class="callout stop">
+  <strong>The first email cannot be sent until all three of these are closed.</strong>
+  One is a placeholder in the email drafts, one is a link-verification job, and the third is the biggest technical unknown in the whole event.
+</div>
+
+<ul class="ck">
+  <li class="crit"><b>Trial signup link is in the first email</b> &mdash; pinned to <code>cloud=aws&amp;region=ap-northeast-1</code> (Tokyo) and <strong>expiring 23 October</strong>. Two jobs follow from that: send the first email early enough that people have a usable window (Monday 19th gives four days, Tuesday 20th gives three), and <strong>obtain a replacement link before the reminder email on 26 October</strong> &mdash; <code>05_Email_T-2_Reminder.html</code> carries a <code>[NEW TRIAL SIGNUP LINK]</code> placeholder for it. <span class="own">EVENT OWNER</span></li>
+  <li class="crit"><b>Confirm the badge enrolment path works for a partner.</b> Three links now sit in the emails: SPN signup (<code>spn.snowflake.com/s/welcome</code>), the Learning Track deep link, and the <code>learn.snowflake.com/en/partners</code> fallback. Test all three <strong>from a logged-out browser</strong> &mdash; the deep link carries an encoded learning-path ID and is exactly the kind of URL that silently redirects to a generic dashboard for a non-Snowflake login. <span class="own">EVENT OWNER</span></li>
+  <li class="crit"><b>Dry run the full lab on a brand-new trial account in AWS Tokyo (<code>ap-northeast-1</code>)</b> &mdash; the region the signup link pins, not an Australian one. Testing in Sydney would validate the wrong environment. Create the account via the same link participants get, install <strong>both the CLI and Desktop</strong>, and run Modules 0&ndash;7 end to end. You are specifically verifying four things: Desktop picks up the CLI connection automatically, Cortex Agents can be created, the Semantic View skill works, and <strong>CoWork is available</strong>. If CoWork is not available on a trial, Module 7 becomes a front-of-room demo and the hackathon CoWork bonus must be withdrawn from the brief <em>before</em> it is published. <span class="own">LAB LEAD</span></li>
+</ul>
+
+<h2 id="t12">Now <span class="when">Before the first email goes out</span></h2>
+<h3>Content</h3>
+<ul class="ck">
+  <li>Lab guide reviewed by the Lab Lead and timings sanity-checked against the dry run <span class="own">LAB LEAD</span></li>
+  <li>Hackathon brief reviewed &mdash; especially that the <b>AI function names and syntax</b> in the starter prompts are current <span class="own">LAB LEAD</span></li>
+  <li>Decide and document which form factor the <b>Lab Lead projects from</b>. The guide recommends CLI for Modules 1&ndash;5 then Desktop for Module 6 &mdash; the Lab Lead should demo that switch live so the room follows. <span class="own">LAB LEAD</span></li>
+  <li>Run sheet circulated to all five Snowflake staff, with <b>names filled into every role placeholder</b> <span class="own">EVENT OWNER</span></li>
+  <li>Matthew Zele confirmed on Session 1, with his demo environment and its own fallback agreed <span class="own">EVENT OWNER</span></li>
+  <li>Three Perth SEs confirmed and told explicitly they are <b>on the floor, not at the back on laptops</b>, for 9:45&ndash;10:45 <span class="own">EVENT OWNER</span></li>
+  <li>Decide and document: is the lab guide hosted at a short URL, handed out as printed PDF, or both? <span class="own">EVENT OWNER</span></li>
+</ul>
+
+<h3>Forms and logistics to create</h3>
+<ul class="ck">
+  <li><b>Hackathon submission form</b> &mdash; the six questions from the brief. Keep it to one screen. <span class="own">EVENT OWNER</span></li>
+  <li><b>Feedback form</b> + printed QR code for the closing slide <span class="own">EVENT OWNER</span></li>
+  <li><b>Judging score sheet</b> &mdash; one page per judge, six teams, the four criteria pre-printed <span class="own">EVENT OWNER</span></li>
+  <li><b>The prize decided and physically acquired.</b> It is on the agenda and in the invite; something must be handed over at 12:25. <span class="own">EVENT OWNER</span></li>
+  <li>Venue confirmed with Cliftons: <b>six tables of 4&ndash;5, power at every seat</b>, projector, HDMI <em>and</em> USB-C adapters, whiteboard or flipchart <span class="own">EVENT OWNER</span></li>
+  <li>Catering confirmed for 25+5: 8:00 coffee, and both breaks. <b>Dietary requirements collected</b> &mdash; not asked on the registration form. <span class="own">EVENT OWNER</span></li>
+  <li>Venue Wi-Fi details obtained in advance, with the guest-network bandwidth cap understood for ~30 concurrent users <span class="own">EVENT OWNER</span></li>
+</ul>
+
+<h2 id="t7">First email <span class="when">Monday 19 or Tuesday 20 October &mdash; file <code>04_Email_T-7_Prerequisites.html</code></span></h2>
+<ul class="ck">
+  <li>All three blocker items above confirmed closed <span class="own">EVENT OWNER</span></li>
+  <li>Registration sheet re-read; <b>send to the corporate address</b> (second email column), not the personal one <span class="own">EVENT OWNER</span></li>
+  <li>Resolve the <b>EY New Zealand registrant</b> &mdash; confirm in-person attendance in Perth <span class="own">EVENT OWNER</span></li>
+  <li>Both duplicate registrations removed from the send list <span class="own">EVENT OWNER</span></li>
+  <li><b>Send the first email.</b> Send to yourself first and check it renders in Outlook and on mobile &mdash; large firms will open it in Outlook. <span class="own">EVENT OWNER</span></li>
+  <li>Calendar invite with venue address and a map link sent or re-sent <span class="own">EVENT OWNER</span></li>
+  <li>Set up a shared inbox or label so setup replies don't get lost <span class="own">EVENT OWNER</span></li>
+</ul>
+
+<div class="callout warn">
+  <strong>Expect replies about locked-down laptops within 48 hours.</strong>
+  Deloitte, EY and other large firms commonly restrict CLI installs, and the session now needs <em>two</em> installs rather than one. The email points people at the Windows <b>User installer</b> for Desktop, which needs no administrator rights and should absorb some of these &mdash; but the CLI has no equivalent escape hatch. Handle each reply individually that week. This is the single highest-value thing you do between the two emails.
+</div>
+
+<h2 id="t2">Reminder email <span class="when">Monday 26 October &mdash; file <code>05_Email_T-2_Reminder.html</code></span></h2>
+<ul class="ck">
+  <li><b>Send the reminder email</b> <span class="own">EVENT OWNER</span></li>
+  <li><b>Check how many people actually signed up before the link expired on 23 October.</b> Anyone who missed it is blocked on Prerequisite 1 and needs the replacement link individually &mdash; don't wait for the group reminder to catch them. <span class="own">EVENT OWNER</span></li>
+  <li><b>Check badge enrolment numbers.</b> Pre-enrolment was Prerequisite 4, so you can see who has and hasn't enrolled before the day rather than chasing afterwards. Chase the gaps by name. <span class="own">EVENT OWNER</span></li>
+  <li>Chase anyone who has not confirmed their setup works &mdash; individually, by name, not another group email <span class="own">EVENT OWNER</span></li>
+  <li>Re-read the registration sheet and <b>lock the final headcount</b> <span class="own">EVENT OWNER</span></li>
+  <li><b>Build the team allocation</b> using the four rules in the run sheet: max two per firm, one non-technical attendee per team, at least two Delivery people per team, singletons spread <span class="own">EVENT OWNER</span></li>
+  <li>Confirm the team-count threshold against final headcount: 6 teams at 21&ndash;25, 5 at 16&ndash;20, 4 below 16 <span class="own">EVENT OWNER</span></li>
+  <li>Brief the SEs <b>by name</b> on which five attendees are non-technical and which tables they are on <span class="own">EVENT OWNER</span></li>
+  <li>Connection/privilege <b>triage runbook written</b> &mdash; the five most likely failures and their fixes, one page, printed <span class="own">FLOOR 1</span></li>
+  <li><b>Fallback SQL script written and tested</b> that creates and populates <code>DEALS</code> and <code>SALES_CONVERSATIONS</code> directly, for anyone whose data generation fails <span class="own">LAB LEAD</span></li>
+  <li><b>CoWork fallback demo prepared</b> on a known-good Snowflake account <span class="own">FLOOR 2</span></li>
+</ul>
+
+<h2 id="t1">Day before <span class="when">Tuesday 27 October</span></h2>
+<ul class="ck">
+  <li>Name cards printed with table numbers &mdash; plus <b>blank spares for walk-ins</b> <span class="own">EVENT OWNER</span></li>
+  <li>Lab guides and hackathon briefs printed, one per attendee plus spares <span class="own">EVENT OWNER</span></li>
+  <li>Judging score sheets printed &times;3 <span class="own">EVENT OWNER</span></li>
+  <li>Feedback QR code and closing slide ready, with the badge link <b>on screen</b> <span class="own">EVENT OWNER</span></li>
+  <li>CoCo installers downloaded to <b>USB sticks</b> for macOS and Windows &mdash; <b>both the CLI and the Desktop installers</b>, including the Windows User installer &mdash; for anyone the venue network blocks <span class="own">LAB LEAD</span></li>
+  <li>Visible countdown timer sourced for the pitch slot (phone or laptop, projected) <span class="own">EVENT OWNER</span></li>
+  <li>Mobile hotspot charged, as presenter-machine backup <span class="own">EVENT OWNER</span></li>
+  <li>Prize in the bag, physically <span class="own">EVENT OWNER</span></li>
+  <li>Final team allocation sent to the Snowflake team &mdash; not to attendees <span class="own">EVENT OWNER</span></li>
+  <li>Cliftons contact name and mobile number held by at least two people <span class="own">EVENT OWNER</span></li>
+</ul>
+
+<h2 id="day">Event day <span class="when">Wednesday 28 October</span></h2>
+<ul class="ck">
+  <li><b>07:00</b> &mdash; Arrive. Room layout, projector, adapters, whiteboard verified <span class="own">EVENT OWNER</span></li>
+  <li><b>07:10</b> &mdash; Wi-Fi tested from the back of the room; SSID and password on the whiteboard and on every table <span class="own">EVENT OWNER</span></li>
+  <li class="crit"><b>07:20</b> &mdash; <b>Lab Lead dry run on the venue network from a clean trial account.</b> Last chance to catch a venue or trial blocker. <span class="own">LAB LEAD</span></li>
+  <li><b>07:30</b> &mdash; Name cards out, printed guides on tables, catering confirmed <span class="own">FLOOR 1/2</span></li>
+  <li><b>07:50</b> &mdash; Five-minute team huddle: allocation, table coverage, the ten-minute rule, CoWork fallback, who judges <span class="own">EVENT OWNER</span></li>
+  <li class="crit"><b>08:00&ndash;08:30</b> &mdash; All three SEs work the room asking <em>"are both the CLI and Desktop installed and connected?"</em>. <b>Know the unready count by 08:30.</b> <span class="own">ALL SEs</span></li>
+  <li><b>08:30</b> &mdash; Attendance marked against the roster (needed for badge follow-up) <span class="own">SCRIBE</span></li>
+  <li><b>10:34 checkpoint</b> &mdash; if the room is behind, cut Module 7 and demo CoWork from the front. Keep Module 6. <span class="own">LAB LEAD</span></li>
+  <li><b>10:45&ndash;11:00</b> &mdash; Every team confirmed to have at least one account with a working agent <span class="own">FLOOR 1/2</span></li>
+  <li><b>11:10</b> &mdash; Every team has a written problem statement before touching a terminal <span class="own">EVENT OWNER</span></li>
+  <li><b>11:58</b> &mdash; Pitch order drawn; hands off keyboards at 12:00 <span class="own">EVENT OWNER</span></li>
+  <li><b>12:25</b> &mdash; Prize handed over; <b>badge link on screen</b>; feedback QR on screen before anyone leaves <span class="own">EVENT OWNER</span></li>
+  <li>Photos taken (see consent note below) <span class="own">SCRIBE</span></li>
+  <li><b>12:30</b> &mdash; Team debrief while it's fresh <span class="own">ALL</span></li>
+</ul>
+
+<h2 id="after">After the event <span class="when">Within 48 hours</span></h2>
+<ul class="ck">
+  <li>Thank-you email: badge enrolment link, lab guide, the <a href="https://www.snowflake.com/en/developers/guides/data-engineering-with-coco/">Data Engineering with CoCo</a> follow-on guide, winning team named <span class="own">EVENT OWNER</span></li>
+  <li>Attendance reconciled against the roster so badge completions can be chased <span class="own">SCRIBE</span></li>
+  <li><b>Badge completion tracked at 2 and 4 weeks</b> &mdash; the badge was a commitment, and without a nudge most self-paced assessments go uncompleted <span class="own">EVENT OWNER</span></li>
+  <li>Feedback reviewed and circulated to the team <span class="own">EVENT OWNER</span></li>
+  <li><b>Named follow-up to each of the 10 partner firms</b> &mdash; this is the actual commercial outcome of the day <span class="own">EVENT OWNER</span></li>
+  <li>Unanswered partner questions routed to the right Snowflake owner <span class="own">EVENT OWNER</span></li>
+  <li>Internal debrief note: what to change for the next city <span class="own">EVENT OWNER</span></li>
+</ul>
+
+<h2 id="gaps">Gap analysis &mdash; things not in the original plan</h2>
+<p>These are not in the invite, the agenda, or your task list. Most are small; a few will cause a visible problem on the day if they are missed.</p>
+
+<div class="gap">
+  <h4>1. The prize doesn't exist yet</h4>
+  <p>"Prize Award" is on the published agenda and in the invite, so attendees are expecting something at 12:25. Nothing has been decided or bought.</p>
+  <p class="rec">Decide this week. It does not need to be expensive &mdash; Snowflake swag, a team dinner voucher, or a named certificate all work. What matters is that something is physically handed over in front of the room.</p>
+</div>
+
+<div class="gap">
+  <h4>2. Dietary requirements were never collected</h4>
+  <p>The registration form captured name, firm, email and role &mdash; no dietary field. You are catering for 30 people across ten firms with no allergy or dietary information.</p>
+  <p class="rec">Add one line to the first email asking people to reply with requirements, and brief Cliftons once you have them. This is the kind of thing that is invisible when handled and memorable when not.</p>
+</div>
+
+<div class="gap">
+  <h4>3. Photography and social consent</h4>
+  <p>You will want photos of a room full of partners building on Snowflake. Some firms &mdash; particularly the Big Four &mdash; have strict policies on staff appearing in vendor marketing.</p>
+  <p class="rec">Mention photography in the first email with an opt-out, and say it again verbally at 08:30. Cheap insurance against an awkward conversation with a partner's marketing team afterwards.</p>
+</div>
+
+<div class="gap">
+  <h4>4. Accessibility was never asked about</h4>
+  <p>No accessibility question on the registration form, and a hands-on terminal-based lab has real accessibility considerations &mdash; screen readers, font sizing, mobility access at Parmelia House.</p>
+  <p class="rec">Add an open "anything we should know to make the day work for you?" line to the first email. It covers accessibility, dietary and laptop issues in one non-intrusive question.</p>
+</div>
+
+<div class="gap">
+  <h4>5. Nobody owns the commercial follow-up</h4>
+  <p>Twenty-five people from ten partner firms, including three in leadership roles and two in sales, will leave the room warm. The agenda ends at 12:30 and the plan ends with it.</p>
+  <p class="rec">Decide before the event who owns the follow-up conversation with each of the ten firms, and what you are asking them for &mdash; a practice commitment, a named client opportunity, a follow-on session. The badge is the enablement outcome; this is the business one.</p>
+</div>
+
+<div class="gap">
+  <h4>6. Badge completion still needs chasing &mdash; but you now have a head start</h4>
+  <p>The assessment is self-paced and sits after the event. Attendance is not completion, and you have committed to partners that they can earn the badge.</p>
+  <p class="rec">Pre-enrolment is now Prerequisite 4 in both emails, which removes the enrolment friction and lets you see who is enrolled <em>before</em> the day. The remaining job is completion: put the claim path on screen at 12:25, repeat it in the follow-up email, and chase at two and four weeks with named individuals. Track it on the roster. Telling the room you will report completion back to their firm lifts completion sharply.</p>
+</div>
+
+<div class="gap">
+  <h4>7. There is no plan for people who finish the lab early</h4>
+  <p>Nineteen of twenty-five attendees are technical delivery people. A meaningful number will finish Modules 0&ndash;5 well inside the hour, and disengaged early finishers are disruptive.</p>
+  <p class="rec">Stretch tasks are built into the lab guide, and the strongest move is to ask early finishers to help their table. Brief the Lab Lead to say this out loud at the 10:34 checkpoint rather than leaving it to chance.</p>
+</div>
+
+<div class="gap">
+  <h4>8. A single partner firm could dominate the hackathon</h4>
+  <p>FA-Tech has six registrants and InterWorks five. Left to self-select, each would form its own team &mdash; losing the cross-firm networking that is one of the real reasons partners attend.</p>
+  <p class="rec">Pre-assigned, mixed teams with printed name cards, as specified in the run sheet. Announce the mixing as deliberate so it reads as a feature rather than an inconvenience.</p>
+</div>
+
+<div class="gap">
+  <h4>9. There is no offline fallback for a total network failure</h4>
+  <p>Everything in the session depends on reaching Snowflake. The venue guest network with 30 concurrent users is a genuine risk and no contingency existed.</p>
+  <p class="rec">The run sheet now carries one: Matthew demos on a hotspot, the hackathon converts to a whiteboard design exercise on the same three tracks, and the lab goes home as homework with the badge link. Have the whiteboard or flipchart in the room so this is actually executable.</p>
+</div>
+
+<div class="gap">
+  <h4>10. Six teams in a 25-minute pitch slot has no slack</h4>
+  <p>Six pitches at three minutes plus one minute of questions is 24 of your 25 minutes. One team overrunning by two minutes eats the entire buffer and pushes into the close.</p>
+  <p class="rec">A visible countdown timer and an MC willing to cut people off mid-sentence. Brief the judges to ask exactly one question each. Tell the teams at 11:58 that the three minutes is hard &mdash; it is kinder than cutting them off unwarned.</p>
+</div>
+
+<div class="gap">
+  <h4>11. The hackathon has no tie-break or scoring mechanics on the day</h4>
+  <p>Three judges scoring independently across four criteria for six teams needs a sheet and an agreed process, or you will be doing mental arithmetic in front of the room.</p>
+  <p class="rec">Pre-printed score sheets, and the judges confer for two minutes while the Event Owner fills time. The tie-breaker is published in the brief: whichever solution the judges would most readily take into a client conversation.</p>
+</div>
+
+<div class="gap">
+  <h4>12. Two of the five Snowflake staff are double-booked during pitches</h4>
+  <p>The Lab Lead and Floor 1 are both judging while Floor 2 covers support. If two teams' demos break simultaneously during pitches, there is one person to help.</p>
+  <p class="rec">Acceptable risk, but know it. The mitigation in the run sheet is that a team whose demo fails moves to the end of the pitch order, giving Floor 2 time to work the problem.</p>
+</div>
+
+<footer>
+  <p><strong>INTERNAL &mdash; Event Owner.</strong> Not for distribution to partners.</p>
+  <p>Generated 16 October 2026, revised 18 October. The three blocker items at the top are unverified and must be closed before the first email is sent &mdash; in particular, trial-account availability of CoWork and Cortex Agents in <strong>AWS Tokyo (<code>ap-northeast-1</code>)</strong>, the region the signup link pins, has not been confirmed and is assumed nowhere in these materials. The trial link expires 23 October and a replacement is required for the reminder email. Email file names retain their original <code>T-7</code> / <code>T-2</code> labels; the actual send dates are Monday 19 or Tuesday 20 October and Monday 26 October.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="snowflake-source" content="cortex-agent-authored">
+<title>INTERNAL — Perth Partner Enablement Run Sheet</title>
+<script type="application/json" id="snowflake-report-metadata">
+{
+  "generated": "2026-10-16",
+  "intent": "Internal Snowflake team run sheet for the Perth Partner CoCo Enablement session, 28 Oct 2026, Cliftons Perth. Minute-by-minute schedule, role assignments (placeholders), content links, risk register and contingencies. Revised 18 Oct: both CoCo CLI and Desktop in scope; trial accounts pinned to AWS ap-northeast-1 (Tokyo) via a link expiring 23 Oct.",
+  "sections": [
+    { "id": "roster", "title": "Attendee roster summary",
+      "dataSources": [{ "type": "external", "url": "https://docs.google.com/spreadsheets/d/1LH8pKmrncy5Ah5l4_E0pFXMODC-1JXoyfv6p5jI-LK8/edit", "note": "Registration form responses read 2026-10-16. 27 rows, 2 flagged Duplicate, 25 unique registrants across 10 firms. Re-read before the event; numbers will drift." }] },
+    { "id": "teams", "title": "Team allocation",
+      "producerNotes": "Six teams of 4-5, deliberately mixed across firms to avoid single-firm blocs. Derived from the roster; re-derive if registrations change." },
+    { "id": "schedule", "title": "Minute-by-minute" },
+    { "id": "risks", "title": "Risk register",
+      "producerNotes": "Risks identified from the agenda, the trial-account constraint and the quickstart content. Unverified items are marked as requiring a dry run." }
+  ]
+}
+</script>
+<style>
+  :root { color-scheme: light dark; --navy:#0D2B45; --cyan:#29B5E8; }
+  * { box-sizing:border-box; }
+  body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+    max-width:1080px; width:100%; margin:0 auto; padding:0 clamp(14px,3vw,26px) 64px;
+    color:light-dark(#1f2937,#e5e7eb); background:light-dark(#fff,#0b1220); line-height:1.55; }
+  header.hero { background:var(--navy); color:#fff; margin:0 calc(-1 * clamp(14px,3vw,26px)) 28px; padding:clamp(24px,5vw,40px) clamp(14px,3vw,26px); }
+  .eyebrow { font-size:11px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--cyan); margin:0 0 10px; }
+  header.hero h1 { font-size:clamp(22px,4.5vw,31px); font-weight:800; margin:0 0 10px; color:#fff; line-height:1.2; }
+  header.hero p { margin:0 0 5px; color:rgba(255,255,255,0.85); font-size:14.5px; }
+  .conf { display:inline-block; background:#DC2626; color:#fff; font-size:10.5px; font-weight:800; letter-spacing:1.2px; padding:3px 9px; border-radius:4px; text-transform:uppercase; margin-bottom:12px; }
+  h2 { font-size:clamp(18px,3.4vw,22px); color:light-dark(var(--navy),#f1f5f9); margin:40px 0 6px; padding-top:13px; border-top:2px solid light-dark(#E5E7EB,#334155); }
+  h3 { font-size:15px; color:light-dark(#111827,#f1f5f9); margin:22px 0 6px; }
+  a { color:light-dark(#0b6fb3,#60a5fa); word-break:break-word; }
+  code { font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:0.87em; background:light-dark(#F3F4F6,#1f2937); padding:1px 5px; border-radius:4px; }
+  pre { background:light-dark(#0D2B45,#111c2e); color:#E6F6FD; padding:14px; border-radius:8px; overflow-x:auto; font-size:12px; white-space:pre-wrap; word-break:break-word; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; }
+  pre code { background:none; padding:0; color:inherit; }
+  .table-wrap { overflow-x:auto; margin:16px 0; }
+  table { border-collapse:collapse; width:100%; font-size:13.5px; }
+  th,td { border:1px solid light-dark(#E5E7EB,#334155); padding:8px 10px; text-align:left; vertical-align:top; }
+  th { background:light-dark(#0D2B45,#1f2937); color:#fff; font-weight:700; font-size:11px; text-transform:uppercase; letter-spacing:.5px; }
+  td.t { white-space:nowrap; font-weight:700; font-variant-numeric:tabular-nums; }
+  td.o { white-space:nowrap; font-weight:700; color:light-dark(#0b6fb3,#60a5fa); font-size:12.5px; }
+  tr.brk td { background:light-dark(#F9FAFB,#141d2e); font-style:italic; }
+  tr.key td { background:light-dark(#F0FAFE,#10243a); }
+  .role { display:inline-block; font-family:ui-monospace,monospace; font-size:11.5px; font-weight:700; background:light-dark(#DBEAFE,#1e3a5f); color:light-dark(#1E40AF,#93c5fd); padding:2px 7px; border-radius:4px; }
+  .callout { border-left:4px solid var(--cyan); background:light-dark(#F0FAFE,#10243a); padding:13px 15px; border-radius:0 8px 8px 0; margin:16px 0; font-size:14px; }
+  .warn { border-left-color:#D97706; background:light-dark(#FFFBEB,#2a2008); }
+  .stop { border-left-color:#DC2626; background:light-dark(#FEF2F2,#2b1111); }
+  .callout strong:first-child { display:block; margin-bottom:4px; }
+  .sev { font-weight:800; font-size:11px; padding:2px 7px; border-radius:4px; white-space:nowrap; }
+  .hi { background:#FEE2E2; color:#991B1B; } .me { background:#FEF3C7; color:#92400E; } .lo { background:#E0F2FE; color:#075985; }
+  ol,ul { padding-left:21px; } li { margin:4px 0; }
+  .check { list-style:none; padding-left:0; }
+  .check li { padding-left:26px; position:relative; }
+  .check li::before { content:"\2610"; position:absolute; left:0; font-size:16px; color:var(--cyan); }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:13px; margin:16px 0; }
+  .card { border:1px solid light-dark(#E5E7EB,#334155); border-left:3px solid var(--cyan); border-radius:8px; padding:14px; }
+  .card h4 { margin:0 0 5px; font-size:13.5px; color:light-dark(var(--navy),#f1f5f9); }
+  .card p { margin:0; font-size:13px; color:light-dark(#4B5563,#9ca3af); }
+  footer { margin-top:50px; padding-top:18px; border-top:1px solid light-dark(#E5E7EB,#334155); font-size:12px; color:light-dark(#6B7280,#9ca3af); }
+  @media print { header.hero { background:#0D2B45 !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; } table,pre,.card { page-break-inside:avoid; } }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <span class="conf">Internal &mdash; Snowflake team only</span>
+  <p class="eyebrow">Run Sheet</p>
+  <h1>Perth Partner CoCo Enablement</h1>
+  <p>Wednesday 28 October 2026 &middot; 08:00 &ndash; 12:30 AWST</p>
+  <p>Cliftons Perth &mdash; Parmelia House, 191 St Georges Terrace, Perth WA 6000</p>
+  <p>25 partner attendees &middot; 10 partner firms &middot; 5 Snowflake staff</p>
+</header>
+
+<h2 style="border-top:none;margin-top:0;">Roles</h2>
+<p>Fill in names before circulating. Every slot below has one named owner &mdash; no shared ownership.</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Role</th><th>Name</th><th>Owns</th></tr></thead>
+  <tbody>
+    <tr><td><span class="role">EVENT OWNER</span></td><td>Brian Orloff</td><td>Overall run of day, timekeeping, partner relationships, escalation point. Does not present a session so he can stay free.</td></tr>
+    <tr><td><span class="role">KEYNOTE</span></td><td>Matthew Zele</td><td>Session 1 &mdash; Agentic Control Plane lecture and live demo.</td></tr>
+    <tr><td><span class="role">LAB LEAD</span></td><td>[SE 1]</td><td>Drives Session 2 from the front. Paces the room, projects their own terminal, calls the checkpoints.</td></tr>
+    <tr><td><span class="role">FLOOR 1</span></td><td>[SE 2]</td><td>Roaming support, tables 1&ndash;3. Owns the connection/privilege triage runbook.</td></tr>
+    <tr><td><span class="role">FLOOR 2</span></td><td>[SE 3]</td><td>Roaming support, tables 4&ndash;6. Owns the CoWork fallback demo.</td></tr>
+    <tr><td><span class="role">JUDGES</span></td><td>Matthew Zele + [SE 1] + [SE 2]</td><td>Score the six pitches independently. <strong>Floor 2 stays on support</strong> during pitches to fix anything breaking mid-demo.</td></tr>
+    <tr><td><span class="role">SCRIBE</span></td><td>[SE 3] / Event Owner</td><td>Captures attendance for badge tracking, team names, scores, and partner questions we could not answer.</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="callout warn">
+  <strong>Support ratio is the thing that makes or breaks this.</strong>
+  Three floor-capable people for 25 attendees is roughly 1:8, which is workable <em>only</em> if nobody is simultaneously presenting. That is why the Event Owner does not take a session. During Session 2 all three SEs must be on the floor, not at the back on laptops.
+</div>
+
+<h2 id="roster">Attendee roster &mdash; as at 16 October</h2>
+<p>From the <a href="https://docs.google.com/spreadsheets/d/1LH8pKmrncy5Ah5l4_E0pFXMODC-1JXoyfv6p5jI-LK8/edit">registration sheet</a>. 27 rows submitted, two flagged as duplicates, <strong>25 unique registrants</strong>. Re-read the sheet the day before &mdash; these numbers will move.</p>
+
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Firm</th><th>Registered</th><th>Firm</th><th>Registered</th></tr></thead>
+  <tbody>
+    <tr><td>FA-Tech Australia</td><td>6</td><td>Mechanical Rock</td><td>2</td></tr>
+    <tr><td>InterWorks</td><td>5</td><td>V2 AI</td><td>1</td></tr>
+    <tr><td>Deloitte</td><td>4</td><td>Comunet</td><td>1</td></tr>
+    <tr><td>Mantel Group</td><td>3</td><td>Versent</td><td>1</td></tr>
+    <tr><td>EY</td><td>1</td><td>Endava</td><td>1</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>Role mix &mdash; plan for this</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Self-declared role</th><th>Count</th><th>Implication</th></tr></thead>
+  <tbody>
+    <tr><td>Delivery / technical</td><td>19</td><td>Comfortable in a terminal. Will finish the lab early &mdash; give them the stretch tasks so they do not get bored and wander.</td></tr>
+    <tr class="key"><td>Leadership</td><td>3</td><td rowspan="3"><strong>Five attendees are non-technical.</strong> A CLI-first lab will lose them in the first ten minutes if we do nothing. Mitigation: the paired driver/navigator model in the lab guide, and seat each of these five with a strong Delivery person. Brief the SEs by name on the day.</td></tr>
+    <tr class="key"><td>Sales</td><td>2</td></tr>
+    <tr class="key"><td>Pre-Sales</td><td>1</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="callout warn">
+  <strong>Two roster items to resolve before the event.</strong>
+  <br>1. One EY registrant submitted an <code>nz.ey.com</code> address &mdash; EY New Zealand, at a Perth event. Confirm whether they are attending in person.
+  <br>2. Seven registrants used a personal address in the first email field and a corporate one in the second. <strong>Send to the corporate address</strong> and verify it is not blocked by their mail gateway &mdash; several are large firms with aggressive filtering.
+</div>
+
+<h2 id="teams">Team allocation &mdash; six teams of four to five</h2>
+<p>Pre-assign before the day; do not let partners self-select, or FA-Tech and InterWorks will each form a single-firm bloc and the cross-firm networking value is lost. Print name cards with table numbers and put them out before doors open.</p>
+
+<h3>Allocation rules</h3>
+<ol>
+  <li><strong>No more than two people from the same firm on a team.</strong> FA-Tech (6), InterWorks (5) and Deloitte (4) must be split across all six tables.</li>
+  <li><strong>One of the five non-technical attendees per team</strong> &mdash; five teams get one, one team gets none. Pair each with a confident Delivery person.</li>
+  <li><strong>At least two Delivery people per team</strong> so no table can be blocked by a single laptop failure.</li>
+  <li><strong>Singletons</strong> (V2 AI, Comunet, Versent, EY, Endava) spread one per table &mdash; they benefit most from the mixing and are at the highest risk of feeling isolated.</li>
+</ol>
+
+<div class="callout">
+  <strong>Build the allocation from the live roster, not from this document.</strong>
+  Re-read the sheet at T-2, after the reminder email has shaken out the no-shows, then allocate. Have a <strong>plan for walk-ins and no-shows</strong>: if you drop to 20, run five teams; below 16, run four. Decide the threshold in advance so you are not doing arithmetic at 08:25.
+</div>
+
+<h2>Content &mdash; every link in one place</h2>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Asset</th><th>Where</th><th>Audience</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Lab guide</strong> (combined, Modules 0&ndash;7)</td><td><code>01_Lab_Guide_Perth.html</code> &mdash; host it, or hand out as PDF</td><td>Participants</td></tr>
+    <tr><td><strong>Hackathon brief</strong></td><td><code>02_Hackathon_Brief.html</code></td><td>Participants, released at 10:45</td></tr>
+    <tr><td><strong>This run sheet</strong></td><td><code>03_Run_Sheet_INTERNAL.html</code></td><td>Snowflake team only</td></tr>
+    <tr><td><strong>First participant email</strong></td><td><code>04_Email_T-7_Prerequisites.html</code></td><td>Send 19 or 20 October</td></tr>
+    <tr><td><strong>Reminder email</strong></td><td><code>05_Email_T-2_Reminder.html</code></td><td>Send 26 October &mdash; <strong>needs a replacement trial link</strong></td></tr>
+    <tr><td><strong>Pre-event checklist</strong></td><td><code>06_Pre_Event_Checklist.html</code></td><td>Event Owner</td></tr>
+    <tr><td>Badge quickstart (authoritative source)</td><td><a href="https://www.snowflake.com/en/developers/guides/getting-started-with-cortex-agents-with-coco/">Getting Started with Cortex Agents with Snowflake CoCo CLI</a></td><td>Both</td></tr>
+    <tr><td>Source of Module 6 (AGENTS.md)</td><td><a href="https://www.snowflake.com/en/developers/guides/data-engineering-with-coco/">Data Engineering with CoCo</a></td><td>Both &mdash; given as follow-on homework</td></tr>
+    <tr><td>Badge enrolment (pre-work)</td><td>SPN signup <a href="https://spn.snowflake.com/s/welcome">spn.snowflake.com</a> &middot; <a href="https://training.snowflake.com/lmt/xlr8login.login?site=sf&amp;in_redirecturl=deeplinkLP%3D219894006">Learning Track deep link</a> &middot; fallback <a href="https://learn.snowflake.com/en/partners/">learn.snowflake.com/en/partners</a>. <strong>All three are in both emails as Prerequisite 4 &mdash; verify each from a logged-out browser.</strong></td><td>Participants</td></tr>
+    <tr><td>CoCo Desktop download</td><td><a href="https://www.snowflake.com/en/product/snowflake-coco/downloads/">snowflake.com &mdash; CoCo Desktop downloads</a> &mdash; Windows <strong>User installer</strong> needs no admin rights</td><td>Participants</td></tr>
+    <tr><td>CoCo Desktop setup reference</td><td><a href="https://docs.snowflake.com/en/user-guide/cortex-code/cortex-code-desktop/onboarding-and-authentication">docs.snowflake.com &mdash; Desktop onboarding &amp; authentication</a></td><td>Both</td></tr>
+    <tr><td>CoCo CLI install &amp; docs</td><td><a href="https://docs.snowflake.com/en/user-guide/cortex-code/cortex-code-cli">docs.snowflake.com &mdash; CoCo CLI</a></td><td>Participants</td></tr>
+    <tr><td>Trial signup link</td><td><a href="https://signup.snowflake.com/?t=11d59b03a5283623a7bebe6bffe8d643e29911651455f3117f8a296350593ad3&amp;cloud=aws&amp;region=ap-northeast-1">Snowflake trial signup</a> &mdash; pinned to <strong>AWS Tokyo (ap-northeast-1)</strong>. <strong>Expires 23 October</strong>; a replacement is needed for the reminder email.</td><td>Participants, in the first email</td></tr>
+    <tr><td>Hackathon submission form</td><td><span class="role">[CREATE &mdash; 6 short questions]</span></td><td>Participants, released at 11:00</td></tr>
+    <tr><td>Feedback form</td><td><span class="role">[CREATE &mdash; QR code on the closing slide]</span></td><td>Participants, at 12:25</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2 id="schedule">Minute-by-minute</h2>
+
+<h3>Pre-event, on the day</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Time</th><th>Owner</th><th>Action</th></tr></thead>
+  <tbody>
+    <tr><td class="t">07:00</td><td class="o">EVENT OWNER</td><td>Arrive. Cliftons contact met. Room layout confirmed: <strong>six tables of 4&ndash;5, power at every seat</strong>, projector and HDMI/USB-C adapters tested, whiteboard or flipchart available.</td></tr>
+    <tr><td class="t">07:10</td><td class="o">EVENT OWNER</td><td>Wi-Fi tested from the back of the room. Note the SSID and password on the whiteboard and on every table. Confirm the guest network does not block the CoCo install endpoints, the Desktop download, or Snowsight. <strong>Latency check:</strong> run a query against a Tokyo trial account &mdash; Perth to <code>ap-northeast-1</code> is a longer round trip than Sydney would be, and it is worth knowing it feels acceptable before 25 people hit it at once.</td></tr>
+    <tr class="key"><td class="t">07:20</td><td class="o">LAB LEAD</td><td><strong>Full dry run on the venue network from a clean trial account.</strong> Create account, install CLI, run Modules 1&ndash;7 end to end. Time each module. This is the last chance to catch a venue-network or trial-account blocker.</td></tr>
+    <tr><td class="t">07:30</td><td class="o">FLOOR 1 / 2</td><td>Arrive. Lay out name cards by table. Printed lab guides and hackathon briefs on tables (one per person). Catering confirmed for 08:00 coffee and the two breaks.</td></tr>
+    <tr><td class="t">07:50</td><td class="o">ALL</td><td>Huddle, 5 min. Confirm: team allocation final, who is on which tables, the ten-minute rule, the CoWork fallback plan, and who is judging.</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>Session</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Time</th><th>Dur</th><th>Owner</th><th>What happens</th></tr></thead>
+  <tbody>
+    <tr>
+      <td class="t">08:00</td><td>30</td><td class="o">EVENT OWNER<br>+ FLOOR 1/2</td>
+      <td><strong>Sign-in, coffee, registration.</strong> Mark attendance against the roster (needed for badge follow-up). Direct people to their <em>allocated</em> table &mdash; do not let them choose.
+      <br><strong>Critical:</strong> all three SEs work the room asking one question &mdash; <em>"are both the CoCo CLI and CoCo Desktop installed and connected to a trial?"</em> Triage every "no" now. By 08:30 you must know how many people are not ready, and whether they are missing one form factor or both.</td>
+    </tr>
+    <tr>
+      <td class="t">08:30</td><td>5</td><td class="o">EVENT OWNER</td>
+      <td><strong>Welcome.</strong> Housekeeping, Wi-Fi, facilities, the day's shape. Set expectations explicitly: this is hands-on, you will be in a terminal, you will be in a team with people you have not met, and you will present at the end. Introduce the Snowflake team and say who to flag for help.</td>
+    </tr>
+    <tr>
+      <td class="t">08:35</td><td>55</td><td class="o">KEYNOTE</td>
+      <td><strong>Session 1 &mdash; The Agentic Control Plane.</strong> Lecture plus live demo of Cortex Agents orchestrating structured and unstructured data. Land the three-part story: <em>Agentic Control Plane</em> (the architecture and where it sits in a client's estate), <em>CoCo</em> (where partners build), <em>CoWork</em> (where the client's business consumes). Close by previewing exactly what they are about to build.
+      <br><span class="role">FLOOR 1/2</span> continue quietly triaging anyone who arrived unready.</td>
+    </tr>
+    <tr class="brk">
+      <td class="t">09:30</td><td>15</td><td class="o">ALL</td>
+      <td><strong>Break.</strong> Hard stop on Session 1 at 09:30 &mdash; protect this break, it is the last buffer before the lab. Use it to finish fixing any broken laptops.</td>
+    </tr>
+    <tr class="key">
+      <td class="t">09:45</td><td>60</td><td class="o">LAB LEAD<br>+ FLOOR 1/2</td>
+      <td><strong>Session 2 &mdash; Hands-On Lab.</strong> Lab Lead projects their screen and paces the room against the module clock below. All three SEs on the floor.
+      <br><strong>Project the CLI for Modules 1&ndash;5, then switch to Desktop for Module 6</strong> &mdash; demo the switch live so the room follows. Desktop reads the connection the CLI already wrote, so there is nothing to re-enter.
+      <br><strong>Call these checkpoints out loud</strong> &mdash; they are how you keep 25 people together:
+      <br>&bull; <strong>09:50</strong> &mdash; "everyone at a CoCo prompt, connected?" (Module 0 done)
+      <br>&bull; <strong>10:02</strong> &mdash; "data generating or generated?" (Module 1 running)
+      <br>&bull; <strong>10:16</strong> &mdash; "search service created?" (Module 2 done)
+      <br>&bull; <strong>10:24</strong> &mdash; "semantic view deployed?" (Module 3 done)
+      <br>&bull; <strong>10:34</strong> &mdash; "agent deployed?" (Module 4 done &mdash; <strong>the one that must not slip</strong>)
+      <br>&bull; <strong>10:42</strong> &mdash; "agent answered all three questions?" (Module 5 done)
+      <br>Modules 6 (AGENTS.md) and 7 (CoWork) are the designed overflow. If the room is behind at 10:34, <strong>cut Module 7 and demo CoWork from the front instead</strong> &mdash; do not cut Module 6, the hackathon leans on it.</td>
+    </tr>
+    <tr class="brk">
+      <td class="t">10:45</td><td>15</td><td class="o">EVENT OWNER</td>
+      <td><strong>Break + team formation.</strong> Announce teams (already allocated &mdash; just read them out and move people). Hand out / release the hackathon brief. Each team nominates driver, business owner and sceptic, and picks a track. Remind them: <strong>do not drop your database.</strong>
+      <br><span class="role">FLOOR 1/2</span> confirm each team has at least one account with a working agent. <strong>Any team without one gets fixed now, not at 11:05.</strong></td>
+    </tr>
+    <tr class="key">
+      <td class="t">11:00</td><td>60</td><td class="o">FLOOR 1/2<br>+ LAB LEAD</td>
+      <td><strong>Session 3 &mdash; Hackathon.</strong> Teams build. SEs roam, two tables each. Enforce the ten-minute rule &mdash; actively ask stuck tables rather than waiting to be asked.
+      <br>&bull; <strong>11:10</strong> &mdash; Event Owner checks every team has a written problem statement. Any team already in a terminal without one gets pulled back.
+      <br>&bull; <strong>11:40</strong> &mdash; "twenty minutes. Start making it demoable."
+      <br>&bull; <strong>11:50</strong> &mdash; "ten minutes. Stop building, write the pitch, submit the one-pager."
+      <br>&bull; <strong>11:58</strong> &mdash; Draw pitch order. <strong>Hands off keyboards at 12:00.</strong></td>
+    </tr>
+    <tr>
+      <td class="t">12:00</td><td>25</td><td class="o">EVENT OWNER<br>(MC)<br>JUDGES</td>
+      <td><strong>Team showcases &amp; judging.</strong> Six teams &times; (3 min pitch + 1 min questions) = 24 min. <strong>Timebox ruthlessly</strong> &mdash; visible timer, and cut people off at 3:00. Letting the first team run to five minutes is how this slot collapses.
+      <br>Judges score independently on the published rubric: 30 problem / 30 agent / 25 pitch / +15 CoWork bonus. <span class="role">FLOOR 2</span> stays on support for live-demo failures. Scribe captures scores and team names.</td>
+    </tr>
+    <tr>
+      <td class="t">12:25</td><td>5</td><td class="o">EVENT OWNER</td>
+      <td><strong>Prize, badge path, close.</strong> Announce the winning team and hand over the prize. Then the three things people must leave with:
+      <br>1. <strong>How to claim the badge</strong> &mdash; they enrolled in the Learning Track as pre-work, so this is the completion path, not the enrolment path. Confirm the hands-on (Part 2) is now done and the assessment is self-paced. Put it on screen and in the follow-up email.
+      <br>2. <strong>The follow-on guide</strong> &mdash; Data Engineering with CoCo for Skills, Plugins and CI/CD.
+      <br>3. <strong>Feedback QR code</strong> &mdash; on screen, ask them to complete it before leaving the room. Response rates collapse once people walk out.
+      <br>Thank the partner firms by name.</td>
+    </tr>
+    <tr class="brk"><td class="t">12:30</td><td>&mdash;</td><td class="o">ALL</td><td><strong>Close.</strong> Informal questions, pack down. Team debrief while it is fresh &mdash; what to change next time.</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2 id="risks">Risk register</h2>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Risk</th><th>Sev</th><th>Mitigation</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><strong>CoWork or Cortex Agents unavailable on trial accounts in AWS Tokyo (<code>ap-northeast-1</code>).</strong> This would undercut the session's central message and Module 7. Note the signup link pins Tokyo, so this must be tested there &mdash; not in Sydney.</td>
+      <td><span class="sev hi">HIGH</span></td>
+      <td><strong>Must be verified on a real trial account in Tokyo before the first email goes out</strong> &mdash; not assumed, and not tested in an Australian region. If unavailable: Module 7 becomes a front-of-room demo on a known-good Snowflake account, and the hackathon CoWork bonus is withdrawn from the brief. Decide this before 19 October, not on the day.</td>
+    </tr>
+    <tr>
+      <td><strong>Data generation in Module 1 overruns.</strong> 150 long transcripts is the slowest step in the quickstart and the likeliest cause of a blown lab.</td>
+      <td><span class="sev hi">HIGH</span></td>
+      <td>Already reduced to 60 transcripts in the lab guide. Dry run at 07:20 to time it on the venue network. Have a <strong>pre-written SQL fallback script</strong> on a USB stick and on screen that creates and populates both tables directly, for anyone whose generation fails.</td>
+    </tr>
+    <tr>
+      <td><strong>Venue network blocks the CoCo install endpoint or throttles 25 concurrent sessions.</strong></td>
+      <td><span class="sev hi">HIGH</span></td>
+      <td>Pre-install of both the CLI and Desktop is a stated prerequisite in both emails, which is the real mitigation. Test at 07:10 from the back of the room. Carry both installers offline on USB. Have a mobile hotspot as backup for at least the presenter machine.</td>
+    </tr>
+    <tr>
+      <td><strong>Participants arrive with no trial account and neither CoCo installed.</strong> Historically the single biggest time sink at hands-on events &mdash; and the session now needs two installs, not one. The 23 October link expiry adds a second way to arrive without an account.</td>
+      <td><span class="sev hi">HIGH</span></td>
+      <td>Both emails state all four prerequisites explicitly, and the reminder email carries a replacement signup link for anyone who missed the first window. All three SEs triage during the 08:00&ndash;08:30 window. Know the unready count by 08:30 and seat those people with ready partners. The paired model means an unready laptop does not stop a person participating. <strong>Desktop is the easier of the two to recover on the day</strong> (download plus User installer, no terminal needed), so if someone has only one working, make sure it is Desktop and pair them. <strong>Have a spare working trial account ready</strong> for anyone who arrives with none.</td>
+    </tr>
+    <tr>
+      <td><strong>Corporate laptop lockdown</strong> &mdash; Deloitte, EY and other large firms may block CLI installs or terminal access entirely.</td>
+      <td><span class="sev me">MED</span></td>
+      <td>Called out in the first email so it surfaces over a week early, not at 08:05. The Windows <strong>User installer</strong> for Desktop needs no administrator rights and absorbs some of these; the CLI has no equivalent escape hatch, so a fully locked-down laptop will be Desktop-only. The lab works that way &mdash; only the Module 6 recommendation changes. Paired working means one locked-down laptop per pair is survivable. Have two or three loaner laptops if you can source them.</td>
+    </tr>
+    <tr>
+      <td><strong>Five non-technical attendees disengage during a CLI lab.</strong></td>
+      <td><span class="sev me">MED</span></td>
+      <td>Paired driver/navigator model with explicit guidance in the lab guide. Seat each with a strong Delivery person. Brief SEs by name. The hackathon business-owner role is designed for them, and carries 30% of the marks.</td>
+    </tr>
+    <tr>
+      <td><strong>Pitch slot overruns.</strong> Six teams in 25 minutes is tight and has no slack.</td>
+      <td><span class="sev me">MED</span></td>
+      <td>Three minutes is already the shortened format. Visible countdown timer. MC cuts at 3:00 without apology. Brief judges to ask one question only. If you end up with fewer teams, give the time back as questions.</td>
+    </tr>
+    <tr>
+      <td><strong>Semantic view or agent creation fails on some accounts</strong> due to role or privilege differences.</td>
+      <td><span class="sev me">MED</span></td>
+      <td>Module 0 verifies privileges explicitly before anyone starts. Floor 1 owns a written triage runbook for the common failures. The guide tells people to stop and raise a hand rather than debug alone.</td>
+    </tr>
+    <tr>
+      <td><strong>Technically strong attendees finish early and disengage.</strong></td>
+      <td><span class="sev lo">LOW</span></td>
+      <td>Stretch tasks are built into Modules 3, 5 and 6. Steer early finishers to help their neighbours &mdash; it is the fastest way to lift the room, and tell them so.</td>
+    </tr>
+    <tr>
+      <td><strong>No-shows change team maths on the morning.</strong></td>
+      <td><span class="sev lo">LOW</span></td>
+      <td>Pre-decide thresholds: 6 teams at 21&ndash;25 attendees, 5 teams at 16&ndash;20, 4 teams below 16. Print spare blank name cards.</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h2>Contingency calls &mdash; decide these in advance</h2>
+<div class="grid">
+  <div class="card"><h4>Room is 15 min behind at 10:34</h4><p>Cut Module 7. Demo CoWork from the front in three minutes. Keep Module 6 &mdash; the hackathon depends on AGENTS.md. Protect the 10:45 break.</p></div>
+  <div class="card"><h4>A third of the room has no working agent at 10:45</h4><p>Extend the break by 10 minutes, shorten the hackathon to 50 min, and pair teams onto fewer accounts. A hackathon with 4 working accounts beats one with 6 broken ones.</p></div>
+  <div class="card"><h4>CoWork is unavailable on the day</h4><p>Front-of-room demo on a known-good account. Announce the bonus is withdrawn <em>before</em> the hackathon starts, not during judging.</p></div>
+  <div class="card"><h4>Network fails entirely</h4><p>Nothing recovers a hands-on lab from this. Pivot to Matthew demoing on a hotspot, convert the hackathon to a whiteboard design exercise on the same three tracks, and send the lab home as homework with the badge link.</p></div>
+  <div class="card"><h4>A team's live demo fails mid-pitch</h4><p>MC moves them to the end of the order; Floor 2 works the problem. They get their three minutes after the last team.</p></div>
+  <div class="card"><h4>Fewer than 16 attendees show</h4><p>Four teams, restore pitches to 5 minutes, and use the recovered time for open Q&amp;A on client positioning &mdash; which is what senior attendees want most anyway.</p></div>
+</div>
+
+<h2>Follow-up &mdash; owned by the Event Owner, within 48 hours</h2>
+<ul class="check">
+  <li>Thank-you email to all attendees with: the badge completion path, the lab guide, the <em>Data Engineering with CoCo</em> follow-on guide, and the winning team named</li>
+  <li>Attendance list reconciled against the roster, so badge completions can be chased</li>
+  <li>Feedback results reviewed and circulated to the team</li>
+  <li>Named follow-up to each of the 10 partner firms &mdash; this is the actual commercial outcome of the day</li>
+  <li>Unanswered questions from the scribe's notes routed to the right Snowflake owner</li>
+  <li>Internal debrief note: what to change for the next city</li>
+</ul>
+
+<footer>
+  <p><strong>INTERNAL &mdash; Snowflake team only.</strong> Not for distribution to partners.</p>
+  <p>Run sheet generated 16 October 2026, revised 18 October. Roster figures read from the registration sheet on 16 October and will drift &mdash; re-read before the event. Trial accounts are pinned to <strong>AWS Tokyo (<code>ap-northeast-1</code>)</strong> by the signup link, which expires 23 October; a replacement link is required for the reminder email. Trial-account feature availability in that region (notably CoWork) is unverified and must be confirmed by dry run before the first email is sent. Email file names retain their original <code>T-7</code> / <code>T-2</code> labels; actual send dates are 19 or 20 October and 26 October.</p>
+</footer>
+
+</body>
+</html>
