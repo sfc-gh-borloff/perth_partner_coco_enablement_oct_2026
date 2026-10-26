@@ -9,6 +9,7 @@ This reminder email sent to all registrations Monday 26th October - contains 4 p
 https://sfc-gh-borloff.github.io/perth_partner_coco_enablement_oct_2026/05_Email_T-2_Reminder.html
 
 Internal Run Sheet (for Snowflake Only)
+***Contains overview of the event, the attendees, and the agenda***
 https://sfc-gh-borloff.github.io/perth_partner_coco_enablement_oct_2026/03_Internal_Run_Sheet.html
 
 Session #2 Hands on lab
