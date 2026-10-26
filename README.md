@@ -12,6 +12,7 @@ Internal Run Sheet (for Snowflake Only)
 https://sfc-gh-borloff.github.io/perth_partner_coco_enablement_oct_2026/03_Internal_Run_Sheet.html
 
 Session #2 Hands on lab
+***This is the main hands on lab, most of lab will be done in the CLI, with the last bit using CoCo Desktop***
 https://sfc-gh-borloff.github.io/perth_partner_coco_enablement_oct_2026/01_Lab_Guide_Perth.html
 
 Session #3 Hackathon
