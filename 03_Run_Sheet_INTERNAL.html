@@ -82,12 +82,12 @@
   <thead><tr><th>Role</th><th>Name</th><th>Owns</th></tr></thead>
   <tbody>
     <tr><td><span class="role">EVENT OWNER</span></td><td>Brian Orloff</td><td>Overall run of day, timekeeping, partner relationships, escalation point. Does not present a session so he can stay free.</td></tr>
-    <tr><td><span class="role">KEYNOTE</span></td><td>Matthew Zele</td><td>Session 1 &mdash; Agentic Control Plane lecture and live demo.</td></tr>
-    <tr><td><span class="role">LAB LEAD</span></td><td>[SE 1]</td><td>Drives Session 2 from the front. Paces the room, projects their own terminal, calls the checkpoints.</td></tr>
-    <tr><td><span class="role">FLOOR 1</span></td><td>[SE 2]</td><td>Roaming support, tables 1&ndash;3. Owns the connection/privilege triage runbook.</td></tr>
-    <tr><td><span class="role">FLOOR 2</span></td><td>[SE 3]</td><td>Roaming support, tables 4&ndash;6. Owns the CoWork fallback demo.</td></tr>
-    <tr><td><span class="role">JUDGES</span></td><td>Matthew Zele + [SE 1] + [SE 2]</td><td>Score the six pitches independently. <strong>Floor 2 stays on support</strong> during pitches to fix anything breaking mid-demo.</td></tr>
-    <tr><td><span class="role">SCRIBE</span></td><td>[SE 3] / Event Owner</td><td>Captures attendance for badge tracking, team names, scores, and partner questions we could not answer.</td></tr>
+    <tr><td><span class="role">KEYNOTE</span></td><td>Brian Orloff</td><td>Session 1 &mdash; Agentic Control Plane lecture and live demo.</td></tr>
+    <tr><td><span class="role">LAB LEAD</span></td><td>Brian Orloff</td><td>Drives Session 2 from the front. Paces the room, projects their own terminal, calls the checkpoints.</td></tr>
+    <tr><td><span class="role">FLOOR 1</span></td><td>Anton Krasikov</td><td>Roaming support, tables 1&ndash;3. Owns the connection/privilege triage runbook.</td></tr>
+    <tr><td><span class="role">FLOOR 2</span></td><td>Gary North</td><td>Roaming support, tables 4&ndash;6. Owns the CoWork fallback demo.</td></tr>
+    <tr><td><span class="role">JUDGES</span></td><td>Mathew Zele + Luke McDermott + Brian Orloff</td><td>Score the six pitches independently. <strong>Floor 2 stays on support</strong> during pitches to fix anything breaking mid-demo.</td></tr>
+    <tr><td><span class="role">SCRIBE</span></td><td>Mathew Zele / Brian Orloff</td><td>Captures attendance for badge tracking, team names, scores, and partner questions we could not answer.</td></tr>
   </tbody>
 </table>
 </div>
@@ -174,36 +174,22 @@
 
 <h2 id="schedule">Minute-by-minute</h2>
 
-<h3>Pre-event, on the day</h3>
-<div class="table-wrap">
-<table>
-  <thead><tr><th>Time</th><th>Owner</th><th>Action</th></tr></thead>
-  <tbody>
-    <tr><td class="t">07:00</td><td class="o">EVENT OWNER</td><td>Arrive. Cliftons contact met. Room layout confirmed: <strong>six tables of 4&ndash;5, power at every seat</strong>, projector and HDMI/USB-C adapters tested, whiteboard or flipchart available.</td></tr>
-    <tr><td class="t">07:10</td><td class="o">EVENT OWNER</td><td>Wi-Fi tested from the back of the room. Note the SSID and password on the whiteboard and on every table. Confirm the guest network does not block the CoCo install endpoints, the Desktop download, or Snowsight. <strong>Latency check:</strong> run a query against a Tokyo trial account &mdash; Perth to <code>ap-northeast-1</code> is a longer round trip than Sydney would be, and it is worth knowing it feels acceptable before 25 people hit it at once.</td></tr>
-    <tr class="key"><td class="t">07:20</td><td class="o">LAB LEAD</td><td><strong>Full dry run on the venue network from a clean trial account.</strong> Create account, install CLI, run Modules 1&ndash;7 end to end. Time each module. This is the last chance to catch a venue-network or trial-account blocker.</td></tr>
-    <tr><td class="t">07:30</td><td class="o">FLOOR 1 / 2</td><td>Arrive. Lay out name cards by table. Printed lab guides and hackathon briefs on tables (one per person). Catering confirmed for 08:00 coffee and the two breaks.</td></tr>
-    <tr><td class="t">07:50</td><td class="o">ALL</td><td>Huddle, 5 min. Confirm: team allocation final, who is on which tables, the ten-minute rule, the CoWork fallback plan, and who is judging.</td></tr>
-  </tbody>
-</table>
-</div>
-
 <h3>Session</h3>
 <div class="table-wrap">
 <table>
   <thead><tr><th>Time</th><th>Dur</th><th>Owner</th><th>What happens</th></tr></thead>
   <tbody>
     <tr>
-      <td class="t">08:00</td><td>30</td><td class="o">EVENT OWNER<br>+ FLOOR 1/2</td>
+      <td class="t">08:00</td><td>30</td><td class="o">Everyone<br>+ FLOOR 1/2</td>
       <td><strong>Sign-in, coffee, registration.</strong> Mark attendance against the roster (needed for badge follow-up). Direct people to their <em>allocated</em> table &mdash; do not let them choose.
       <br><strong>Critical:</strong> all three SEs work the room asking one question &mdash; <em>"are both the CoCo CLI and CoCo Desktop installed and connected to a trial?"</em> Triage every "no" now. By 08:30 you must know how many people are not ready, and whether they are missing one form factor or both.</td>
     </tr>
     <tr>
-      <td class="t">08:30</td><td>5</td><td class="o">EVENT OWNER</td>
+      <td class="t">08:30</td><td>5</td><td class="o">Mathew Zele</td>
       <td><strong>Welcome.</strong> Housekeeping, Wi-Fi, facilities, the day's shape. Set expectations explicitly: this is hands-on, you will be in a terminal, you will be in a team with people you have not met, and you will present at the end. Introduce the Snowflake team and say who to flag for help.</td>
     </tr>
     <tr>
-      <td class="t">08:35</td><td>55</td><td class="o">KEYNOTE</td>
+      <td class="t">08:35</td><td>55</td><td class="o">Brian Orloff</td>
       <td><strong>Session 1 &mdash; The Agentic Control Plane.</strong> Lecture plus live demo of Cortex Agents orchestrating structured and unstructured data. Land the three-part story: <em>Agentic Control Plane</em> (the architecture and where it sits in a client's estate), <em>CoCo</em> (where partners build), <em>CoWork</em> (where the client's business consumes). Close by previewing exactly what they are about to build.
       <br><span class="role">FLOOR 1/2</span> continue quietly triaging anyone who arrived unready.</td>
     </tr>
@@ -212,7 +198,7 @@
       <td><strong>Break.</strong> Hard stop on Session 1 at 09:30 &mdash; protect this break, it is the last buffer before the lab. Use it to finish fixing any broken laptops.</td>
     </tr>
     <tr class="key">
-      <td class="t">09:45</td><td>60</td><td class="o">LAB LEAD<br>+ FLOOR 1/2</td>
+      <td class="t">09:45</td><td>60</td><td class="o">Brian Orloff<br>+ Everyone</td>
       <td><strong>Session 2 &mdash; Hands-On Lab.</strong> Lab Lead projects their screen and paces the room against the module clock below. All three SEs on the floor.
       <br><strong>Project the CLI for Modules 1&ndash;5, then switch to Desktop for Module 6</strong> &mdash; demo the switch live so the room follows. Desktop reads the connection the CLI already wrote, so there is nothing to re-enter.
       <br><strong>Call these checkpoints out loud</strong> &mdash; they are how you keep 25 people together:
@@ -225,7 +211,7 @@
       <br>Modules 6 (AGENTS.md) and 7 (CoWork) are the designed overflow. If the room is behind at 10:34, <strong>cut Module 7 and demo CoWork from the front instead</strong> &mdash; do not cut Module 6, the hackathon leans on it.</td>
     </tr>
     <tr class="brk">
-      <td class="t">10:45</td><td>15</td><td class="o">EVENT OWNER</td>
+      <td class="t">10:45</td><td>15</td><td class="o">Brian Orloff</td>
       <td><strong>Break + team formation.</strong> Announce teams (already allocated &mdash; just read them out and move people). Hand out / release the hackathon brief. Each team nominates driver, business owner and sceptic, and picks a track. Remind them: <strong>do not drop your database.</strong>
       <br><span class="role">FLOOR 1/2</span> confirm each team has at least one account with a working agent. <strong>Any team without one gets fixed now, not at 11:05.</strong></td>
     </tr>
