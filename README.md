@@ -15,16 +15,3 @@ https://sfc-gh-borloff.github.io/perth_partner_coco_enablement_oct_2026/01_Lab_G
 
 Session #3 Hackathon
 https://sfc-gh-borloff.github.io/perth_partner_coco_enablement_oct_2026/02_Hackathon_Brief.html
-
-
-
-
-
-
-
-https://sfc-gh-borloff.github.io/perth_partner_coco_enablement_oct_2026/
-
-
-https://sfc-gh-borloff.github.io/perth_partner_coco_enablement_oct_2026/
-
-
