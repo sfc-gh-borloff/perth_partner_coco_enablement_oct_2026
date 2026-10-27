@@ -8,6 +8,9 @@ This reminder email sent to all registrations Monday 26th October - contains 4 p
 ***Use the link in this file to setup the Snowflake Trial Instance***
 https://sfc-gh-borloff.github.io/perth_partner_coco_enablement_oct_2026/05_Email_T-2_Reminder.html
 
+Did not have time to do the prerequisites? No worries, everything is right here for you. Grab one of the Snowflake team members and let's get you ready for the day. 
+https://sfc-gh-borloff.github.io/perth_partner_coco_enablement_oct_2026/08_Day_Of_Catch_Up.html
+
 Internal Run Sheet (for Snowflake Only)
 ***Contains overview of the event, the attendees, and the agenda***
 https://sfc-gh-borloff.github.io/perth_partner_coco_enablement_oct_2026/03_Internal_Run_Sheet.html
