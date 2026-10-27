@@ -1,6 +1,11 @@
 # perth_partner_coco_enablement_oct_2026
 Perth Partner Coco Enablement October 2026
 
+If you are reading this page, then you connected as a facilitator. 
+
+If you are a participant please click on this link to open the agenda and guides. 
+https://sfc-gh-borloff.github.io/perth_partner_coco_enablement_oct_2026/
+
 This email sent to all registrations Monday 19th Ocotber - contains 4 pre-requisite steps
 https://sfc-gh-borloff.github.io/perth_partner_coco_enablement_oct_2026/04_Email_T-7_Prerequisites.html
 
@@ -21,3 +26,6 @@ https://sfc-gh-borloff.github.io/perth_partner_coco_enablement_oct_2026/01_Lab_G
 
 Session #3 Hackathon
 https://sfc-gh-borloff.github.io/perth_partner_coco_enablement_oct_2026/02_Hackathon_Brief.html
+
+Files contained in this repo
+
