@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="snowflake-source" content="cortex-agent-authored" />
+<title>Not set up yet? Start here &mdash; Perth, 28 October</title>
+<script type="application/json" id="snowflake-report-metadata">
+{
+  "generated": "2026-10-27",
+  "intent": "Day-of catch-up sheet for Perth Partner CoCo Enablement attendees who arrive without the four prerequisites completed. Deliberately short, triaged by deadline, and written to remove any sense of being behind.",
+  "dataSources": [
+    { "type": "file", "note": "All links and commands lifted verbatim from 05_Email_T-2_Reminder.html (trial signup token 941967ca..., CoCo Desktop downloads, SPN welcome, Learning Track deep link, partner learning fallback). Staff names from 03_Internal_Run_Sheet.html after the 26 Oct placeholder fill." }
+  ],
+  "sections": [
+    { "id": "triage", "title": "What actually has to be done, and by when",
+      "producerNotes": "Core design decision: only steps 1 and 2 gate the 09:45 lab. Step 3 (Desktop) is needed from Module 6 and can be done in the 09:30 break. Step 4 (badge enrolment) does not block participation at all and can be done after the event. Ordering by deadline rather than by the email's 1-4 sequence is what makes this a catch-up sheet." },
+    { "id": "step-1", "title": "Step 1 - Trial account",
+      "producerNotes": "Region must stay AWS ap-northeast-1 (Tokyo) because the signup token pins it. Enterprise edition, ACCOUNTADMIN." },
+    { "id": "step-2", "title": "Step 2 - CoCo CLI" },
+    { "id": "step-3", "title": "Step 3 - CoCo Desktop",
+      "producerNotes": "Set Default Warehouse is called out because it is the most common cause of queries failing on the day. Windows User installer needs no admin rights." },
+    { "id": "step-4", "title": "Step 4 - Badge enrolment" },
+    { "id": "test", "title": "The 30-second test",
+      "producerNotes": "Carries the known Cortex-AI-on-trial-accounts failure. Confirmed in the field 20 Oct 2026 on account KT10300: self-service trials have AI features disabled by default, surfacing as 'Cortex Code is not enabled...' in the CLI and 'Access denied for trial accounts.' in Desktop. Attendees are told to escalate rather than self-diagnose, because the documented fix is adding a credit card and that is not something to ask a partner to do. See 07_Troubleshooting_Cortex_Not_Enabled.md." }
+  ]
+}
+</script>
+<style>
+  :root { color-scheme: light dark; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    max-width: 760px; width: 100%; margin: 0 auto;
+    padding: clamp(16px, 4vw, 28px);
+    color: light-dark(#1f2937, #e5e7eb);
+    background: light-dark(#ffffff, #0f172a);
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+  }
+  .hero {
+    background: #0D2B45; color: #ffffff;
+    border-radius: 10px; padding: clamp(18px, 4vw, 26px);
+    margin-bottom: 22px;
+  }
+  .hero h1 { margin: 0 0 8px; font-size: clamp(21px, 5vw, 27px); color: #ffffff; line-height: 1.25; }
+  .hero p { margin: 0; color: #cfe6f5; font-size: 15px; }
+  .hero .mins { color: #29B5E8; font-weight: 700; }
+
+  h2 { font-size: 18px; margin: 28px 0 10px; color: light-dark(#0D2B45, #f1f5f9); }
+  p { margin: 0 0 12px; }
+  a { color: light-dark(#0b6fb3, #60a5fa); font-weight: 600; }
+
+  .reassure {
+    background: light-dark(#F0F9FF, #10293a);
+    border-left: 4px solid #29B5E8;
+    padding: 14px 16px; border-radius: 0 6px 6px 0; margin: 0 0 24px;
+  }
+  .reassure p:last-child { margin-bottom: 0; }
+
+  .step {
+    border: 1px solid light-dark(#e2e8f0, #334155);
+    border-radius: 8px; padding: 16px 18px; margin: 0 0 14px;
+    background: light-dark(#ffffff, #16202e);
+    break-inside: avoid; page-break-inside: avoid;
+  }
+  .step h3 { margin: 0 0 4px; font-size: 16px; color: light-dark(#0D2B45, #f1f5f9); }
+  .step .meta { font-size: 12px; font-weight: 700; letter-spacing: .04em;
+                text-transform: uppercase; color: light-dark(#5a6b7d, #94a3b8); margin: 0 0 10px; }
+  .step p:last-child, .step ul:last-child { margin-bottom: 0; }
+  .skip { font-size: 14px; color: light-dark(#4a5a6a, #9fb0c0); font-style: italic; }
+
+  code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    background: light-dark(#f1f5f9, #0b1623);
+    padding: 1px 5px; border-radius: 3px; font-size: 0.92em;
+  }
+  pre {
+    background: light-dark(#0b1623, #060d16); color: #e2e8f0;
+    padding: 11px 13px; border-radius: 6px; margin: 6px 0 12px;
+    overflow-x: auto; font-size: 13px; line-height: 1.45;
+  }
+  pre code { background: none; padding: 0; color: inherit; font-size: inherit; }
+
+  .when { background: light-dark(#f8fafc, #16202e);
+          border: 1px solid light-dark(#e2e8f0, #334155);
+          border-radius: 8px; padding: 6px 18px 14px; margin: 0 0 8px; }
+  .when ul { margin: 10px 0 0; padding-left: 20px; }
+  .when li { margin-bottom: 7px; }
+  .when li:last-child { margin-bottom: 0; }
+
+  .warn { background: light-dark(#FFFBEB, #2e2408);
+          border-left: 4px solid #D97706;
+          padding: 14px 16px; border-radius: 0 6px 6px 0; margin: 14px 0; }
+  .warn strong:first-child { color: light-dark(#92400E, #fbbf24); }
+  .warn p:last-child { margin-bottom: 0; }
+
+  .ask { background: #0D2B45; color: #ffffff; border-radius: 8px;
+         padding: 16px 18px; margin: 24px 0 0; }
+  .ask h2 { color: #ffffff; margin: 0 0 8px; }
+  .ask p { color: #cfe6f5; margin: 0; }
+  .ask strong { color: #ffffff; }
+
+  .foot { margin-top: 28px; padding-top: 14px;
+          border-top: 1px solid light-dark(#e2e8f0, #334155);
+          font-size: 13px; color: light-dark(#5a6b7d, #94a3b8); }
+  .foot p { margin: 0 0 4px; }
+
+  @media print {
+    body { background: #fff; color: #000; max-width: none; padding: 12mm; font-size: 11pt; }
+    .hero, .ask { background: #0D2B45 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    pre { background: #0b1623 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .reassure, .warn, .when, .step { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    a { word-break: break-all; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>Not set up yet? Start here.</h1>
+  <p>You&rsquo;re in the right place. <span class="mins">About 15 minutes</span> gets you ready for the lab &mdash; and you don&rsquo;t need all four things done before we start.</p>
+</div>
+
+<div class="reassure">
+  <p><strong>Genuinely, this is fine.</strong> You&rsquo;re not the only one, we expected it, and there are three of us on the floor specifically to get you going.</p>
+  <p>Work down this sheet in order. If anything doesn&rsquo;t behave, put your hand up straight away rather than quietly falling behind &mdash; that&rsquo;s the whole reason we&rsquo;re here early.</p>
+</div>
+
+<h2 id="triage">What has to be done, and by when</h2>
+
+<div class="when">
+  <ul>
+    <li><strong>Before the lab at 9:45</strong> &mdash; Steps 1 and 2 only. That&rsquo;s the trial account and the CLI, about 15 minutes.</li>
+    <li><strong>In the 9:30 break</strong> &mdash; Step 3, CoCo Desktop. You won&rsquo;t need it until later in the lab, so don&rsquo;t rush it now.</li>
+    <li><strong>Any time, even after today</strong> &mdash; Step 4, badge enrolment. It doesn&rsquo;t affect anything you do this morning.</li>
+  </ul>
+</div>
+
+<p class="skip">Already done some of these? Skip straight past them &mdash; but do run the 30-second test at the bottom.</p>
+
+<div class="step" id="step-1">
+  <h3>Step 1 &mdash; Your Snowflake trial account</h3>
+  <p class="meta">Needed before 9:45 &middot; about 5 minutes</p>
+  <p><a href="https://signup.snowflake.com/?t=941967cad9f06966b577922df019490a2da3de307aba66de7c4979562ec1ee37&amp;cloud=aws&amp;region=ap-northeast-1">Snowflake trial signup</a> &mdash; use this link, not a signup page you find yourself.</p>
+  <p><strong>Leave the region exactly as it is</strong> &mdash; AWS Asia Pacific (Tokyo). It looks wrong from Perth. It isn&rsquo;t. Changing it will break the lab.</p>
+  <p>Choose <strong>Enterprise</strong> edition. Check the activation email, sign in to Snowsight, and confirm your role says <code>ACCOUNTADMIN</code> in the top right.</p>
+  <p class="skip">Already created a trial? Keep using it. Ignore this step.</p>
+</div>
+
+<div class="step" id="step-2">
+  <h3>Step 2 &mdash; The CoCo CLI</h3>
+  <p class="meta">Needed before 9:45 &middot; about 5 minutes</p>
+  <p>macOS, Linux or WSL &mdash; paste into a terminal:</p>
+  <pre><code>curl -LsS https://ai.snowflake.com/static/cc-scripts/install.sh | sh</code></pre>
+  <p>Windows &mdash; paste into PowerShell:</p>
+  <pre><code>irm https://ai.snowflake.com/static/cc-scripts/install.ps1 | iex</code></pre>
+  <p>Then run <code>cortex</code> and follow the prompts to connect to your trial account. Do this one before Step 3 and Desktop will pick up the connection on its own.</p>
+</div>
+
+<div class="step" id="step-3">
+  <h3>Step 3 &mdash; CoCo Desktop</h3>
+  <p class="meta">Fine to leave until the 9:30 break</p>
+  <p><a href="https://www.snowflake.com/en/product/snowflake-coco/downloads/">CoCo Desktop downloads</a> &mdash; macOS or Windows. On Windows pick the <strong>User installer</strong>; it needs no administrator rights, so a locked-down laptop is not a blocker.</p>
+  <p>Launch it and run the four-step setup. If you did Step 2 first, your connection is detected automatically &mdash; just select it.</p>
+  <p>Then click your connection name in the top bar and <strong>Set Default Warehouse</strong>. Don&rsquo;t skip that one &mdash; it&rsquo;s the single most common reason queries fail later in the morning.</p>
+</div>
+
+<div class="step" id="step-4">
+  <h3>Step 4 &mdash; Badge enrolment</h3>
+  <p class="meta">Not needed today &middot; do it whenever</p>
+  <p>You&rsquo;ll need a Snowflake Partner Network login. No account? Enrol at <a href="https://spn.snowflake.com/s/welcome">spn.snowflake.com</a> first.</p>
+  <p>Then sign in and enrol in the <a href="https://training.snowflake.com/lmt/xlr8login.login?site=sf&amp;in_redirecturl=deeplinkLP%3D219894006">Snowflake Partner CoCo Foundation Learning Track</a>. If that link misbehaves, go to <a href="https://learn.snowflake.com/en/partners/">learn.snowflake.com/en/partners</a> and find the track under <em>Featured Learning</em>.</p>
+  <p><strong>Once you&rsquo;re enrolled, stop.</strong> No pre-reading. We cover Part 1 today and Part 2 is the lab we run together. We&rsquo;ll walk through claiming the badge at the close.</p>
+</div>
+
+<h2 id="test">The 30-second test</h2>
+
+<p>Open the CLI with <code>cortex</code>, and if you&rsquo;ve installed it, CoCo Desktop too. In each one, type:</p>
+
+<pre><code>What Snowflake account, user and role am I connected as?</code></pre>
+
+<p>If you get an answer naming your trial account and <code>ACCOUNTADMIN</code>, you&rsquo;re ready.</p>
+
+<div class="warn">
+  <p><strong>If you see either of these, stop and flag it &mdash; don&rsquo;t try to fix it:</strong></p>
+  <p style="margin:8px 0;"><code>Cortex Code is not enabled or the usage limit has been reached</code><br />
+  <code>Access denied for trial accounts</code></p>
+  <p>These mean AI features need switching on for your account. It&rsquo;s a known thing, it is <em>not</em> something you&rsquo;ve done wrong, and it takes us a minute to sort. Just show one of us the screen.</p>
+</div>
+
+<div class="ask">
+  <h2>Stuck on anything at all?</h2>
+  <p>Find <strong>Luke</strong>, <strong>Anton Krasikov</strong> or <strong>Gary North</strong> on the floor, or <strong>Brian Orloff</strong> at the front. No need to wait politely &mdash; we&rsquo;d far rather sort it now than have you watching the lab instead of doing it.</p>
+</div>
+
+<div class="foot">
+  <p><strong>Snowflake Partner Enablement</strong> &mdash; Build with Cortex Agents &amp; CoCo</p>
+  <p>Wednesday 28 October &middot; Cliftons Perth, Parmelia House, 191 St Georges Terrace</p>
+</div>
+
+</body>
+</html>
